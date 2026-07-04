@@ -18,7 +18,8 @@ import { isTafsirFullyDownloaded, isTranslationDownloaded, getMissingTafsirSurah
 // Only the resources we currently have pre-built bundles for — see
 // scripts/build-tafsir-bundles.mjs. Extend both lists together when more
 // resources are bundled.
-const DOWNLOADABLE_TAFSIR_IDS = [14, 169, 160];
+// Every tafsir the app offers (src/lib/tafsirs.ts TAFSIRS) is downloadable.
+const DOWNLOADABLE_TAFSIR_IDS = [14, 169, 160, 15, 16, 90, 91, 93, 94, 157, 159, 168, 817, 818];
 // Every translation the app offers (src/context/AudioContext.tsx TRANSLATIONS) is downloadable.
 const DOWNLOADABLE_TRANSLATION_IDS = [20, 84, 85, 22, 95, 158, 97, 234, 54, 151, 819, 831];
 const ALL_SURAH_IDS = Array.from({ length: 114 }, (_, i) => i + 1);
@@ -27,7 +28,7 @@ const ALL_SURAH_IDS = Array.from({ length: 114 }, (_, i) => i + 1);
 // (e.g. plain "Tafsir Ibn Kathir" for the Arabic one vs "Ibn Kathir
 // (Abridged)" for English) — spell out the language explicitly here so
 // users can tell which one actually matches what the reader defaults to.
-const TAFSIR_DISPLAY_NAMES: Record<number, string> = {
+export const TAFSIR_DISPLAY_NAMES: Record<number, string> = {
   14: "Ibn Kathir — Arabic (full)",
   169: "Ibn Kathir — English (abridged)",
   160: "Ibn Kathir — Urdu",

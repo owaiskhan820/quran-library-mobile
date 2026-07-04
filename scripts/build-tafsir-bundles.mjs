@@ -30,10 +30,22 @@ const RETRY_DELAY_MS = 1000;
 // ---- Resource lists (per the agreed priority set) ----
 
 // Tafsirs: fetched via /tafsirs/{id}/by_ayah/{surah}:{ayah}
+// Full catalog from src/lib/tafsirs.ts — all three languages.
 const TAFSIR_RESOURCES = [
   { id: 14, slug: "ar-tafsir-ibn-kathir", name: "Tafsir Ibn Kathir (Arabic)" },
   { id: 169, slug: "en-tafisr-ibn-kathir", name: "Ibn Kathir (Abridged, English)" },
   { id: 160, slug: "tafseer-ibn-e-kaseer-urdu", name: "Tafsir Ibn Kathir (Urdu)" },
+  { id: 15, slug: "ar-tafsir-al-tabari", name: "Tafsir al-Tabari (Arabic)" },
+  { id: 16, slug: "ar-tafsir-muyassar", name: "Tafsir Muyassar (Arabic)" },
+  { id: 90, slug: "ar-tafseer-al-qurtubi", name: "Al-Qurtubi (Arabic)" },
+  { id: 91, slug: "ar-tafseer-al-saddi", name: "Tafsir Al-Sa'di (Arabic)" },
+  { id: 93, slug: "ar-tafsir-al-wasit", name: "Al-Tafsir al-Wasit (Arabic)" },
+  { id: 94, slug: "ar-tafsir-al-baghawi", name: "Tafseer Al-Baghawi (Arabic)" },
+  { id: 157, slug: "tafsir-fe-zalul-quran-syed-qatab", name: "Fi Zilal al-Quran (Urdu)" },
+  { id: 159, slug: "tafsir-bayan-ul-quran", name: "Bayan ul Quran (Urdu)" },
+  { id: 168, slug: "en-tafsir-maarif-ul-quran", name: "Ma'arif al-Qur'an (English)" },
+  { id: 817, slug: "tazkirul-quran-en", name: "Tazkirul Quran (English)" },
+  { id: 818, slug: "tazkiru-quran-ur", name: "Tazkir ul Quran (Urdu)" },
 ];
 
 // Translations WITH footnotes to splice in (Maududi's Tafheem-ul-Quran

@@ -6,10 +6,10 @@ import { useRouter } from "next/navigation";
 import { useAudioContext, RECITERS, TRANSLATIONS } from "@/context/AudioContext";
 import { TAFSIRS } from "@/lib/tafsirs";
 import { useAuth } from "@/context/AuthContext";
-import { getManifestSnapshot, getStorageUsage } from "@/lib/offline/manifest";
-import { deleteSurahAudio, subscribeActiveDownloads } from "@/lib/offline/downloadManager";
+import { getManifestSnapshot, getStorageUsage, isTafsirFullyDownloaded, getMissingTafsirSurahs } from "@/lib/offline/manifest";
+import { deleteSurahAudio, deleteTafsir, deleteTranslation, subscribeActiveDownloads } from "@/lib/offline/downloadManager";
 import chaptersTiny from "../../../public/data/chapters-tiny.json";
-import TafsirTranslationDownloads from "@/components/offline/TafsirTranslationDownloads";
+import TafsirTranslationDownloads, { TAFSIR_DISPLAY_NAMES } from "@/components/offline/TafsirTranslationDownloads";
 
 import {
   ChevronLeft,
@@ -223,9 +223,70 @@ export default function SettingsPage() {
     );
   }, [refreshKey, searchDownloadQuery]);
 
+  // Downloaded tafsirs & translations, for the same "My Downloads" list
+  const downloadedTextResources = useMemo(() => {
+    const manifest = getManifestSnapshot();
+    const rows: {
+      type: "tafsir" | "translation";
+      id: number;
+      name: string;
+      sizeStr: string;
+      bytes: number;
+      partial: boolean;
+      missingCount: number;
+    }[] = [];
+
+    Object.keys(manifest.tafsirs).forEach((idStr) => {
+      const id = Number(idStr);
+      const tafsir = TAFSIRS.find((t) => t.id === id);
+      if (!tafsir) return;
+      const entry = manifest.tafsirs[idStr];
+      const missing = getMissingTafsirSurahs(id);
+      rows.push({
+        type: "tafsir",
+        id,
+        name: TAFSIR_DISPLAY_NAMES[id] ?? tafsir.name,
+        sizeStr: formatBytes(entry.bytesTotal),
+        bytes: entry.bytesTotal,
+        partial: !isTafsirFullyDownloaded(id),
+        missingCount: missing.length,
+      });
+    });
+
+    Object.keys(manifest.translations).forEach((idStr) => {
+      const id = Number(idStr);
+      const translation = TRANSLATIONS.find((t) => t.id === id);
+      if (!translation) return;
+      const entry = manifest.translations[idStr];
+      rows.push({
+        type: "translation",
+        id,
+        name: translation.name,
+        sizeStr: formatBytes(entry.bytes),
+        bytes: entry.bytes,
+        partial: false,
+        missingCount: 0,
+      });
+    });
+
+    rows.sort((a, b) => a.name.localeCompare(b.name));
+
+    if (!searchDownloadQuery.trim()) return rows;
+    return rows.filter((r) => r.name.toLowerCase().includes(searchDownloadQuery.toLowerCase()));
+  }, [refreshKey, searchDownloadQuery]);
+
   // Download operations
   const handleDeleteSurah = async (reciterSlug: string, surah: number) => {
     await deleteSurahAudio(reciterSlug, surah);
+    setRefreshKey((k) => k + 1);
+  };
+
+  const handleDeleteTextResource = async (type: "tafsir" | "translation", id: number) => {
+    if (type === "tafsir") {
+      await deleteTafsir(id, Array.from({ length: 114 }, (_, i) => i + 1));
+    } else {
+      await deleteTranslation(id);
+    }
     setRefreshKey((k) => k + 1);
   };
 
@@ -878,6 +939,43 @@ export default function SettingsPage() {
                 )}
               </div>
             </div>
+
+            {downloadedTextResources.length > 0 && (
+              <div className="w-full">
+                <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-widest pl-1 mb-4">Tafsir & Translations</h3>
+                <div className="space-y-3 max-h-[45vh] overflow-y-auto custom-scrollbar pb-10 pr-1">
+                  {downloadedTextResources.map((row) => (
+                    <div
+                      key={`${row.type}-${row.id}`}
+                      className="p-4 bg-white border border-gray-200 rounded-2xl flex items-center justify-between shadow-sm"
+                    >
+                      <div className="flex items-center gap-4 min-w-0">
+                        <div className="w-11 h-11 bg-teal-50/70 border border-teal-100 rounded-2xl flex items-center justify-center text-teal-800 shrink-0">
+                          {row.type === "tafsir" ? <BookOpen size={20} /> : <Languages size={20} />}
+                        </div>
+                        <div className="min-w-0">
+                          <h4 className="font-bold text-sm text-gray-900 truncate">{row.name}</h4>
+                          <p className="text-xs text-gray-400 truncate mt-0.5 font-medium">
+                            {row.type === "tafsir" ? "Tafsir" : "Translation"} &bull; {row.sizeStr}
+                            {row.partial && (
+                              <span className="text-amber-600"> &bull; {row.missingCount} surah{row.missingCount === 1 ? "" : "s"} missing</span>
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={() => handleDeleteTextResource(row.type, row.id)}
+                        className="p-2 text-gray-300 hover:text-red-600 hover:bg-red-50 rounded-full active:scale-95 transition-all shrink-0"
+                        aria-label={`Delete ${row.name}`}
+                      >
+                        <Trash2 size={18} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
 
