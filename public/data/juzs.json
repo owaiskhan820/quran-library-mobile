@@ -1,0 +1,364 @@
+{
+  "juzs": [
+    {
+      "id": 1,
+      "juz": 1,
+      "name_arabic": "الم",
+      "verses_count": 285,
+      "verse_mapping": {
+        "start_surah": 1,
+        "start_verse": 1,
+        "end_surah": 2,
+        "end_verse": 141
+      }
+    },
+    {
+      "id": 2,
+      "juz": 2,
+      "name_arabic": "سيقول",
+      "verses_count": 221,
+      "verse_mapping": {
+        "start_surah": 2,
+        "start_verse": 142,
+        "end_surah": 2,
+        "end_verse": 252
+      }
+    },
+    {
+      "id": 3,
+      "juz": 3,
+      "name_arabic": "تلك الرسل",
+      "verses_count": 213,
+      "verse_mapping": {
+        "start_surah": 2,
+        "start_verse": 253,
+        "end_surah": 3,
+        "end_verse": 91
+      }
+    },
+    {
+      "id": 4,
+      "juz": 4,
+      "name_arabic": "لن تنالوا",
+      "verses_count": 228,
+      "verse_mapping": {
+        "start_surah": 3,
+        "start_verse": 92,
+        "end_surah": 4,
+        "end_verse": 23
+      }
+    },
+    {
+      "id": 5,
+      "juz": 5,
+      "name_arabic": "والمحصنات",
+      "verses_count": 214,
+      "verse_mapping": {
+        "start_surah": 4,
+        "start_verse": 24,
+        "end_surah": 4,
+        "end_verse": 147
+      }
+    },
+    {
+      "id": 6,
+      "juz": 6,
+      "name_arabic": "لا يحب الله",
+      "verses_count": 186,
+      "verse_mapping": {
+        "start_surah": 4,
+        "start_verse": 148,
+        "end_surah": 5,
+        "end_verse": 80
+      }
+    },
+    {
+      "id": 7,
+      "juz": 7,
+      "name_arabic": "وإذا سمعوا",
+      "verses_count": 206,
+      "verse_mapping": {
+        "start_surah": 5,
+        "start_verse": 81,
+        "end_surah": 6,
+        "end_verse": 110
+      }
+    },
+    {
+      "id": 8,
+      "juz": 8,
+      "name_arabic": "ولو أننا",
+      "verses_count": 189,
+      "verse_mapping": {
+        "start_surah": 6,
+        "start_verse": 111,
+        "end_surah": 7,
+        "end_verse": 37
+      }
+    },
+    {
+      "id": 9,
+      "juz": 9,
+      "name_arabic": "قال الملأ",
+      "verses_count": 186,
+      "verse_mapping": {
+        "start_surah": 7,
+        "start_verse": 38,
+        "end_surah": 7,
+        "end_verse": 170
+      }
+    },
+    {
+      "id": 10,
+      "juz": 10,
+      "name_arabic": "واعلموا",
+      "verses_count": 166,
+      "verse_mapping": {
+        "start_surah": 7,
+        "start_verse": 171,
+        "end_surah": 8,
+        "end_verse": 40
+      }
+    },
+    {
+      "id": 11,
+      "juz": 11,
+      "name_arabic": "يعتذرون",
+      "verses_count": 210,
+      "verse_mapping": {
+        "start_surah": 8,
+        "start_verse": 41,
+        "end_surah": 9,
+        "end_verse": 92
+      }
+    },
+    {
+      "id": 12,
+      "juz": 12,
+      "name_arabic": "وما من دابة",
+      "verses_count": 156,
+      "verse_mapping": {
+        "start_surah": 9,
+        "start_verse": 93,
+        "end_surah": 11,
+        "end_verse": 5
+      }
+    },
+    {
+      "id": 13,
+      "juz": 13,
+      "name_arabic": "وما أبرئ",
+      "verses_count": 163,
+      "verse_mapping": {
+        "start_surah": 11,
+        "start_verse": 6,
+        "end_surah": 12,
+        "end_verse": 3
+      }
+    },
+    {
+      "id": 14,
+      "juz": 14,
+      "name_arabic": "ربما",
+      "verses_count": 234,
+      "verse_mapping": {
+        "start_surah": 12,
+        "start_verse": 4,
+        "end_surah": 14,
+        "end_verse": 52
+      }
+    },
+    {
+      "id": 15,
+      "juz": 15,
+      "name_arabic": "سبحان الذي",
+      "verses_count": 199,
+      "verse_mapping": {
+        "start_surah": 15,
+        "start_verse": 1,
+        "end_surah": 16,
+        "end_verse": 128
+      }
+    },
+    {
+      "id": 16,
+      "juz": 16,
+      "name_arabic": "قال ألم",
+      "verses_count": 192,
+      "verse_mapping": {
+        "start_surah": 17,
+        "start_verse": 1,
+        "end_surah": 18,
+        "end_verse": 74
+      }
+    },
+    {
+      "id": 17,
+      "juz": 17,
+      "name_arabic": "اقترب للناس",
+      "verses_count": 182,
+      "verse_mapping": {
+        "start_surah": 18,
+        "start_verse": 75,
+        "end_surah": 20,
+        "end_verse": 135
+      }
+    },
+    {
+      "id": 18,
+      "juz": 18,
+      "name_arabic": "قد أفلح",
+      "verses_count": 190,
+      "verse_mapping": {
+        "start_surah": 21,
+        "start_verse": 1,
+        "end_surah": 22,
+        "end_verse": 78
+      }
+    },
+    {
+      "id": 19,
+      "juz": 19,
+      "name_arabic": "وقال الذين",
+      "verses_count": 165,
+      "verse_mapping": {
+        "start_surah": 23,
+        "start_verse": 1,
+        "end_surah": 25,
+        "end_verse": 20
+      }
+    },
+    {
+      "id": 20,
+      "juz": 20,
+      "name_arabic": "أمن خلق",
+      "verses_count": 176,
+      "verse_mapping": {
+        "start_surah": 25,
+        "start_verse": 21,
+        "end_surah": 27,
+        "end_verse": 55
+      }
+    },
+    {
+      "id": 21,
+      "juz": 21,
+      "name_arabic": "اتل ما أوحي",
+      "verses_count": 195,
+      "verse_mapping": {
+        "start_surah": 27,
+        "start_verse": 56,
+        "end_surah": 29,
+        "end_verse": 45
+      }
+    },
+    {
+      "id": 22,
+      "juz": 22,
+      "name_arabic": "ومن يقنت",
+      "verses_count": 155,
+      "verse_mapping": {
+        "start_surah": 29,
+        "start_verse": 46,
+        "end_surah": 33,
+        "end_verse": 30
+      }
+    },
+    {
+      "id": 23,
+      "juz": 23,
+      "name_arabic": "وما لي",
+      "verses_count": 180,
+      "verse_mapping": {
+        "start_surah": 33,
+        "start_verse": 31,
+        "end_surah": 36,
+        "end_verse": 27
+      }
+    },
+    {
+      "id": 24,
+      "juz": 24,
+      "name_arabic": "فمن أظلم",
+      "verses_count": 148,
+      "verse_mapping": {
+        "start_surah": 36,
+        "start_verse": 28,
+        "end_surah": 39,
+        "end_verse": 31
+      }
+    },
+    {
+      "id": 25,
+      "juz": 25,
+      "name_arabic": "إليه يرد",
+      "verses_count": 191,
+      "verse_mapping": {
+        "start_surah": 39,
+        "start_verse": 32,
+        "end_surah": 41,
+        "end_verse": 46
+      }
+    },
+    {
+      "id": 26,
+      "juz": 26,
+      "name_arabic": "حم",
+      "verses_count": 200,
+      "verse_mapping": {
+        "start_surah": 41,
+        "start_verse": 47,
+        "end_surah": 45,
+        "end_verse": 37
+      }
+    },
+    {
+      "id": 27,
+      "juz": 27,
+      "name_arabic": "قال فما خطبكم",
+      "verses_count": 197,
+      "verse_mapping": {
+        "start_surah": 46,
+        "start_verse": 1,
+        "end_surah": 51,
+        "end_verse": 30
+      }
+    },
+    {
+      "id": 28,
+      "juz": 28,
+      "name_arabic": "قد سمع الله",
+      "verses_count": 209,
+      "verse_mapping": {
+        "start_surah": 51,
+        "start_verse": 31,
+        "end_surah": 57,
+        "end_verse": 29
+      }
+    },
+    {
+      "id": 29,
+      "juz": 29,
+      "name_arabic": "تبارك الذي",
+      "verses_count": 226,
+      "verse_mapping": {
+        "start_surah": 58,
+        "start_verse": 1,
+        "end_surah": 66,
+        "end_verse": 12
+      }
+    },
+    {
+      "id": 30,
+      "juz": 30,
+      "name_arabic": "عم",
+      "verses_count": 347,
+      "verse_mapping": {
+        "start_surah": 67,
+        "start_verse": 1,
+        "end_surah": 114,
+        "end_verse": 6
+      }
+    }
+  ]
+}

@@ -1,0 +1,1364 @@
+[
+  {
+    "line": 1,
+    "type": "ayah",
+    "is_centered": false,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﱁﱂ",
+        "l": "6:111:1",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور اگر",
+        "en": "And (even) if"
+      },
+      {
+        "c": "ﱃ",
+        "l": "6:111:2",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "بیشک ہم",
+        "en": "[that] We (had)"
+      },
+      {
+        "c": "ﱄ",
+        "l": "6:111:3",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "نازل کرتے ہم",
+        "en": "[We] sent down"
+      },
+      {
+        "c": "ﱅ",
+        "l": "6:111:4",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "ان کی طرف",
+        "en": "to them"
+      },
+      {
+        "c": "ﱆ",
+        "l": "6:111:5",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "فرشتوں کو",
+        "en": "the Angels"
+      },
+      {
+        "c": "ﱇ",
+        "l": "6:111:6",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور کلام کرتے ان سے",
+        "en": "and spoken to them"
+      },
+      {
+        "c": "ﱈ",
+        "l": "6:111:7",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "مردے",
+        "en": "the dead"
+      },
+      {
+        "c": "ﱉ",
+        "l": "6:111:8",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور اکٹھا کر لاتے ہم",
+        "en": "and We gathered"
+      }
+    ]
+  },
+  {
+    "line": 2,
+    "type": "ayah",
+    "is_centered": false,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﱊ",
+        "l": "6:111:9",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "ان پر",
+        "en": "before them"
+      },
+      {
+        "c": "ﱋ",
+        "l": "6:111:10",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "ہر",
+        "en": "every"
+      },
+      {
+        "c": "ﱌ",
+        "l": "6:111:11",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "چیز کو",
+        "en": "thing"
+      },
+      {
+        "c": "ﱍ",
+        "l": "6:111:12",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "سامنے",
+        "en": "face to face"
+      },
+      {
+        "c": "ﱎ",
+        "l": "6:111:13",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "نہ",
+        "en": "not"
+      },
+      {
+        "c": "ﱏ",
+        "l": "6:111:14",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "تھے وہ",
+        "en": "they were"
+      },
+      {
+        "c": "ﱐ",
+        "l": "6:111:15",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "کہ ایمان لے آتے",
+        "en": "to believe"
+      },
+      {
+        "c": "ﱑ",
+        "l": "6:111:16",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "مگر",
+        "en": "unless"
+      },
+      {
+        "c": "ﱒ",
+        "l": "6:111:17",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "یہ کہ",
+        "en": "[that]"
+      },
+      {
+        "c": "ﱓ",
+        "l": "6:111:18",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "چاہتا",
+        "en": "wills"
+      },
+      {
+        "c": "ﱔ",
+        "l": "6:111:19",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اللہ",
+        "en": "Allah"
+      }
+    ]
+  },
+  {
+    "line": 3,
+    "type": "ayah",
+    "is_centered": false,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﱕ",
+        "l": "6:111:20",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "لیکن",
+        "en": "But"
+      },
+      {
+        "c": "ﱖ",
+        "l": "6:111:21",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اکثر ان میں سے",
+        "en": "most of them"
+      },
+      {
+        "c": "ﱗ",
+        "l": "6:111:22",
+        "a": "111",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "جہالت برتتے ہیں",
+        "en": "(are) ignorant"
+      },
+      {
+        "c": "ﱘ",
+        "l": "6:111:23",
+        "a": "111",
+        "s": "6",
+        "isStopSign": true,
+        "ur": "(۱۱۱)",
+        "en": "(111)"
+      },
+      {
+        "c": "ﱙ",
+        "l": "6:112:1",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور اسی طرح",
+        "en": "And thus"
+      },
+      {
+        "c": "ﱚ",
+        "l": "6:112:2",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "بنائے ہم نے",
+        "en": "We made"
+      },
+      {
+        "c": "ﱛ",
+        "l": "6:112:3",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "ہر  کے لئے",
+        "en": "for every"
+      },
+      {
+        "c": "ﱜ",
+        "l": "6:112:4",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "نبی",
+        "en": "Prophet"
+      }
+    ]
+  },
+  {
+    "line": 4,
+    "type": "ayah",
+    "is_centered": false,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﱝ",
+        "l": "6:112:5",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "دشمن",
+        "en": "an enemy "
+      },
+      {
+        "c": "ﱞ",
+        "l": "6:112:6",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "شیطان",
+        "en": "devils"
+      },
+      {
+        "c": "ﱟ",
+        "l": "6:112:7",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "انسانوں میں سے",
+        "en": "(from) the mankind"
+      },
+      {
+        "c": "ﱠ",
+        "l": "6:112:8",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور جنوں میں سے",
+        "en": "and the jinn"
+      },
+      {
+        "c": "ﱡ",
+        "l": "6:112:9",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "وحی کرتے ہیں",
+        "en": "inspiring"
+      },
+      {
+        "c": "ﱢ",
+        "l": "6:112:10",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "ان میں سے بعض",
+        "en": "some of them"
+      },
+      {
+        "c": "ﱣ",
+        "l": "6:112:11",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "طرف",
+        "en": "to"
+      },
+      {
+        "c": "ﱤ",
+        "l": "6:112:12",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "بعض کی",
+        "en": "others"
+      }
+    ]
+  },
+  {
+    "line": 5,
+    "type": "ayah",
+    "is_centered": false,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﱥ",
+        "l": "6:112:13",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "ملمع شدہ باتیں / چکنی چپڑی",
+        "en": "(with) decorative"
+      },
+      {
+        "c": "ﱦ",
+        "l": "6:112:14",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "باتیں",
+        "en": "[the] speech"
+      },
+      {
+        "c": "ﱧﱨ",
+        "l": "6:112:15",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "فریب کے لئے",
+        "en": "(in) deception"
+      },
+      {
+        "c": "ﱩ",
+        "l": "6:112:16",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور اگر",
+        "en": "But if"
+      },
+      {
+        "c": "ﱪ",
+        "l": "6:112:17",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "چاہتا",
+        "en": "(had) willed"
+      },
+      {
+        "c": "ﱫ",
+        "l": "6:112:18",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "رب تیرا",
+        "en": "your Lord"
+      },
+      {
+        "c": "ﱬ",
+        "l": "6:112:19",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "نہ",
+        "en": "not"
+      },
+      {
+        "c": "ﱭﱮ",
+        "l": "6:112:20",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "وہ کرتے اس کو",
+        "en": "they (would) have done it"
+      },
+      {
+        "c": "ﱯ",
+        "l": "6:112:21",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "پس چھوڑ دو انہیں",
+        "en": "so leave them"
+      },
+      {
+        "c": "ﱰ",
+        "l": "6:112:22",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور جو",
+        "en": "and what"
+      }
+    ]
+  },
+  {
+    "line": 6,
+    "type": "ayah",
+    "is_centered": false,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﱱ",
+        "l": "6:112:23",
+        "a": "112",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "افتراء پردازیاں وہ کرتے ہیں / جو جھوٹ وہ گھڑتے ہیں",
+        "en": "they invent"
+      },
+      {
+        "c": "ﱲ",
+        "l": "6:112:24",
+        "a": "112",
+        "s": "6",
+        "isStopSign": true,
+        "ur": "(۱۱۲)",
+        "en": "(112)"
+      },
+      {
+        "c": "ﱳ",
+        "l": "6:113:1",
+        "a": "113",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور تاکہ مائل ہوں",
+        "en": "And so that incline"
+      },
+      {
+        "c": "ﱴ",
+        "l": "6:113:2",
+        "a": "113",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اسی کی طرف",
+        "en": "to it"
+      },
+      {
+        "c": "ﱵ",
+        "l": "6:113:3",
+        "a": "113",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "دل",
+        "en": "hearts"
+      },
+      {
+        "c": "ﱶ",
+        "l": "6:113:4",
+        "a": "113",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "ان لوگوں کے",
+        "en": "(of) those who"
+      },
+      {
+        "c": "ﱷ",
+        "l": "6:113:5",
+        "a": "113",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "نہیں",
+        "en": "(do) not"
+      },
+      {
+        "c": "ﱸ",
+        "l": "6:113:6",
+        "a": "113",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "جو ایمان نہیں لاتے",
+        "en": "believe"
+      },
+      {
+        "c": "ﱹ",
+        "l": "6:113:7",
+        "a": "113",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "آخرت پر",
+        "en": "in the Hereafter"
+      }
+    ]
+  },
+  {
+    "line": 7,
+    "type": "ayah",
+    "is_centered": false,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﱺ",
+        "l": "6:113:8",
+        "a": "113",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور تاکہ وہ پسند کریں اس کو",
+        "en": "and so that they may be pleased with it"
+      },
+      {
+        "c": "ﱻ",
+        "l": "6:113:9",
+        "a": "113",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور تاکہ وہ کمائیں",
+        "en": "and so that they may commit"
+      },
+      {
+        "c": "ﱼ",
+        "l": "6:113:10",
+        "a": "113",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "جو",
+        "en": "what"
+      },
+      {
+        "c": "ﱽ",
+        "l": "6:113:11",
+        "a": "113",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "وہ",
+        "en": "they"
+      },
+      {
+        "c": "ﱾ",
+        "l": "6:113:12",
+        "a": "113",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "کمانے والے ہیں",
+        "en": "(are) committing"
+      },
+      {
+        "c": "ﱿ",
+        "l": "6:113:13",
+        "a": "113",
+        "s": "6",
+        "isStopSign": true,
+        "ur": "(۱۱۳)",
+        "en": "(113)"
+      },
+      {
+        "c": "ﲀ",
+        "l": "6:114:1",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "کیا بھلا سوا",
+        "en": "Then is (it) other than"
+      },
+      {
+        "c": "ﲁ",
+        "l": "6:114:2",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اللہ کے",
+        "en": "Allah"
+      },
+      {
+        "c": "ﲂ",
+        "l": "6:114:3",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "میں تلاش کروں",
+        "en": "I seek"
+      }
+    ]
+  },
+  {
+    "line": 8,
+    "type": "ayah",
+    "is_centered": false,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﲃ",
+        "l": "6:114:4",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "کوئی فیصلہ کرنے والا",
+        "en": "(as) judge"
+      },
+      {
+        "c": "ﲄ",
+        "l": "6:114:5",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "حالانکہ وہ",
+        "en": "while He"
+      },
+      {
+        "c": "ﲅ",
+        "l": "6:114:6",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اللہ وہ ذات ہے",
+        "en": "(is) the One Who"
+      },
+      {
+        "c": "ﲆ",
+        "l": "6:114:7",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "جس نے نازل کی",
+        "en": "has revealed"
+      },
+      {
+        "c": "ﲇ",
+        "l": "6:114:8",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "تمہاری طرف",
+        "en": "to you"
+      },
+      {
+        "c": "ﲈ",
+        "l": "6:114:9",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "کتاب",
+        "en": "the Book"
+      },
+      {
+        "c": "ﲉﲊ",
+        "l": "6:114:10",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "تفصیلا / کھول کر/ تمیز کرنے والی",
+        "en": "explained in detail"
+      }
+    ]
+  },
+  {
+    "line": 9,
+    "type": "ayah",
+    "is_centered": false,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﲋ",
+        "l": "6:114:11",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور وہ لوگ",
+        "en": "And those (to) whom"
+      },
+      {
+        "c": "ﲌ",
+        "l": "6:114:12",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "دی ہم نے ان کو",
+        "en": "We gave them"
+      },
+      {
+        "c": "ﲍ",
+        "l": "6:114:13",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "کتاب",
+        "en": "the Book"
+      },
+      {
+        "c": "ﲎ",
+        "l": "6:114:14",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "وہ جانتے ہیں",
+        "en": "they know"
+      },
+      {
+        "c": "ﲏ",
+        "l": "6:114:15",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "کہ بیشک وہ",
+        "en": "that it"
+      },
+      {
+        "c": "ﲐ",
+        "l": "6:114:16",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "نازل کردہ ہے",
+        "en": "(is) sent down"
+      },
+      {
+        "c": "ﲑ",
+        "l": "6:114:17",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "سے",
+        "en": "from"
+      },
+      {
+        "c": "ﲒ",
+        "l": "6:114:18",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "تیرے رب کی طرف سے",
+        "en": "your Lord"
+      }
+    ]
+  },
+  {
+    "line": 10,
+    "type": "ayah",
+    "is_centered": false,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﲓﲔ",
+        "l": "6:114:19",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "حق کے ساتھ",
+        "en": "in truth"
+      },
+      {
+        "c": "ﲕ",
+        "l": "6:114:20",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "پس ہرگز نہ",
+        "en": "so (do) not"
+      },
+      {
+        "c": "ﲖ",
+        "l": "6:114:21",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "تم ہونا",
+        "en": "be"
+      },
+      {
+        "c": "ﲗ",
+        "l": "6:114:22",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "سے",
+        "en": "among"
+      },
+      {
+        "c": "ﲘ",
+        "l": "6:114:23",
+        "a": "114",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "شک کرنے والوں میں سے",
+        "en": "the ones who doubt"
+      },
+      {
+        "c": "ﲙ",
+        "l": "6:114:24",
+        "a": "114",
+        "s": "6",
+        "isStopSign": true,
+        "ur": "(۱۱۴)",
+        "en": "(114)"
+      },
+      {
+        "c": "ﲚ",
+        "l": "6:115:1",
+        "a": "115",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور پوری ہوگئی",
+        "en": "And (has been) fulfilled"
+      },
+      {
+        "c": "ﲛ",
+        "l": "6:115:2",
+        "a": "115",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "بات",
+        "en": "(the) word"
+      },
+      {
+        "c": "ﲜ",
+        "l": "6:115:3",
+        "a": "115",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "تیرے رب کی",
+        "en": "(of) your Lord"
+      }
+    ]
+  },
+  {
+    "line": 11,
+    "type": "ayah",
+    "is_centered": false,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﲝ",
+        "l": "6:115:4",
+        "a": "115",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "سچائی والی",
+        "en": "(in) truth"
+      },
+      {
+        "c": "ﲞﲟ",
+        "l": "6:115:5",
+        "a": "115",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور عدل والی",
+        "en": "and justice"
+      },
+      {
+        "c": "ﲠ",
+        "l": "6:115:6",
+        "a": "115",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "نہیں",
+        "en": "No"
+      },
+      {
+        "c": "ﲡ",
+        "l": "6:115:7",
+        "a": "115",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "کوئی بدلنے والا",
+        "en": "one can change"
+      },
+      {
+        "c": "ﲢﲣ",
+        "l": "6:115:8",
+        "a": "115",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اس کے کلمات کو / اس کی باتوں کو",
+        "en": "His words"
+      },
+      {
+        "c": "ﲤ",
+        "l": "6:115:9",
+        "a": "115",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور وہ",
+        "en": "and He"
+      },
+      {
+        "c": "ﲥ",
+        "l": "6:115:10",
+        "a": "115",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "سننے والا ہے",
+        "en": "(is) the All-Hearer"
+      },
+      {
+        "c": "ﲦ",
+        "l": "6:115:11",
+        "a": "115",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "جاننے والا ہے",
+        "en": "the All-Knower"
+      }
+    ]
+  },
+  {
+    "line": 12,
+    "type": "ayah",
+    "is_centered": false,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﲧ",
+        "l": "6:115:12",
+        "a": "115",
+        "s": "6",
+        "isStopSign": true,
+        "ur": "(۱۱۵)",
+        "en": "(115)"
+      },
+      {
+        "c": "ﲨ",
+        "l": "6:116:1",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور اگر",
+        "en": "And if"
+      },
+      {
+        "c": "ﲩ",
+        "l": "6:116:2",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "تم اطاعت کرو",
+        "en": "you obey"
+      },
+      {
+        "c": "ﲪ",
+        "l": "6:116:3",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اکثر (کی)",
+        "en": "most"
+      },
+      {
+        "c": "ﲫ",
+        "l": "6:116:4",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "جو",
+        "en": "of"
+      },
+      {
+        "c": "ﲬ",
+        "l": "6:116:5",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "میں",
+        "en": "(those) in"
+      },
+      {
+        "c": "ﲭ",
+        "l": "6:116:6",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "زمین میں ہیں",
+        "en": "the earth"
+      },
+      {
+        "c": "ﲮ",
+        "l": "6:116:7",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "وہ بھٹکادیں گے تجھ کو",
+        "en": "they will mislead you"
+      },
+      {
+        "c": "ﲯ",
+        "l": "6:116:8",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "سے",
+        "en": "from"
+      },
+      {
+        "c": "ﲰ",
+        "l": "6:116:9",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "راستے",
+        "en": "(the) way"
+      },
+      {
+        "c": "ﲱﲲ",
+        "l": "6:116:10",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اللہ کے",
+        "en": "(of) Allah"
+      },
+      {
+        "c": "ﲳ",
+        "l": "6:116:11",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "نہیں",
+        "en": "Not"
+      }
+    ]
+  },
+  {
+    "line": 13,
+    "type": "ayah",
+    "is_centered": false,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﲴ",
+        "l": "6:116:12",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "وہ پیروی کرتے",
+        "en": "they follow"
+      },
+      {
+        "c": "ﲵ",
+        "l": "6:116:13",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "مگر",
+        "en": "except"
+      },
+      {
+        "c": "ﲶ",
+        "l": "6:116:14",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "گمان کی",
+        "en": "[the] assumption"
+      },
+      {
+        "c": "ﲷ",
+        "l": "6:116:15",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور نہیں",
+        "en": "and not"
+      },
+      {
+        "c": "ﲸ",
+        "l": "6:116:16",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "وہ",
+        "en": "they (do)"
+      },
+      {
+        "c": "ﲹ",
+        "l": "6:116:17",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "مگر",
+        "en": "except"
+      },
+      {
+        "c": "ﲺ",
+        "l": "6:116:18",
+        "a": "116",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "قیاس آرائیاں کرتے ہیں",
+        "en": "guess"
+      },
+      {
+        "c": "ﲻ",
+        "l": "6:116:19",
+        "a": "116",
+        "s": "6",
+        "isStopSign": true,
+        "ur": "(۱۱۶)",
+        "en": "(116)"
+      },
+      {
+        "c": "ﲼ",
+        "l": "6:117:1",
+        "a": "117",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "بیشک",
+        "en": "Indeed"
+      },
+      {
+        "c": "ﲽ",
+        "l": "6:117:2",
+        "a": "117",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "تیرا رب",
+        "en": "your Lord"
+      },
+      {
+        "c": "ﲾ",
+        "l": "6:117:3",
+        "a": "117",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "وہ",
+        "en": "He"
+      }
+    ]
+  },
+  {
+    "line": 14,
+    "type": "ayah",
+    "is_centered": false,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﲿ",
+        "l": "6:117:4",
+        "a": "117",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "زیادہ جانتا ہے",
+        "en": "knows best"
+      },
+      {
+        "c": "ﳀ",
+        "l": "6:117:5",
+        "a": "117",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "کون",
+        "en": "who"
+      },
+      {
+        "c": "ﳁ",
+        "l": "6:117:6",
+        "a": "117",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "بھٹکا ہوا ہے",
+        "en": "strays"
+      },
+      {
+        "c": "ﳂ",
+        "l": "6:117:7",
+        "a": "117",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "سے",
+        "en": "from"
+      },
+      {
+        "c": "ﳃﳄ",
+        "l": "6:117:8",
+        "a": "117",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اس کے راستے سے",
+        "en": "His way"
+      },
+      {
+        "c": "ﳅ",
+        "l": "6:117:9",
+        "a": "117",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اور وہ",
+        "en": "and He"
+      },
+      {
+        "c": "ﳆ",
+        "l": "6:117:10",
+        "a": "117",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "زیادہ جانتا ہے",
+        "en": "(is) most knowing"
+      },
+      {
+        "c": "ﳇ",
+        "l": "6:117:11",
+        "a": "117",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "ہدایت پانے والوں کو",
+        "en": "of the guided-ones"
+      },
+      {
+        "c": "ﳈ",
+        "l": "6:117:12",
+        "a": "117",
+        "s": "6",
+        "isStopSign": true,
+        "ur": "(۱۱۷)",
+        "en": "(117)"
+      },
+      {
+        "c": "ﳉ",
+        "l": "6:118:1",
+        "a": "118",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "پس کھاؤ",
+        "en": "So eat"
+      }
+    ]
+  },
+  {
+    "line": 15,
+    "type": "ayah",
+    "is_centered": false,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﳊ",
+        "l": "6:118:2",
+        "a": "118",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اس میں سے جو",
+        "en": "of what"
+      },
+      {
+        "c": "ﳋ",
+        "l": "6:118:3",
+        "a": "118",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "ذکر کیا گیا",
+        "en": "(is) mentioned"
+      },
+      {
+        "c": "ﳌ",
+        "l": "6:118:4",
+        "a": "118",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "نام",
+        "en": "(the) name"
+      },
+      {
+        "c": "ﳍ",
+        "l": "6:118:5",
+        "a": "118",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اللہ کا",
+        "en": "(of) Allah"
+      },
+      {
+        "c": "ﳎ",
+        "l": "6:118:6",
+        "a": "118",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "جس پر",
+        "en": "on it"
+      },
+      {
+        "c": "ﳏ",
+        "l": "6:118:7",
+        "a": "118",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اگر",
+        "en": "if"
+      },
+      {
+        "c": "ﳐ",
+        "l": "6:118:8",
+        "a": "118",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "ہو تم",
+        "en": "you are"
+      },
+      {
+        "c": "ﳑ",
+        "l": "6:118:9",
+        "a": "118",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "اس کی آیات پر",
+        "en": "in His Verses "
+      },
+      {
+        "c": "ﳒ",
+        "l": "6:118:10",
+        "a": "118",
+        "s": "6",
+        "isStopSign": false,
+        "ur": "ایمان لانے والے",
+        "en": "believers"
+      },
+      {
+        "c": "ﳓ",
+        "l": "6:118:11",
+        "a": "118",
+        "s": "6",
+        "isStopSign": true,
+        "ur": "(۱۱۸)",
+        "en": "(118)"
+      }
+    ]
+  }
+]

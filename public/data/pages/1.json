@@ -1,0 +1,389 @@
+[
+  {
+    "line": 1,
+    "type": "surah_name",
+    "is_centered": true,
+    "surah": 1,
+    "words": []
+  },
+  {
+    "line": 2,
+    "type": "ayah",
+    "is_centered": true,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﱁ",
+        "l": "1:1:1",
+        "a": "1",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "ساتھ نام",
+        "en": "In (the) name"
+      },
+      {
+        "c": "ﱂ",
+        "l": "1:1:2",
+        "a": "1",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "اللہ کے",
+        "en": "(of) Allah"
+      },
+      {
+        "c": "ﱃ",
+        "l": "1:1:3",
+        "a": "1",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "جو بے حد مہربان ہے",
+        "en": "the Most Gracious"
+      },
+      {
+        "c": "ﱄ",
+        "l": "1:1:4",
+        "a": "1",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "بار بار رحم فرمانے والا ہے",
+        "en": "the Most Merciful"
+      },
+      {
+        "c": "ﱅ",
+        "l": "1:1:5",
+        "a": "1",
+        "s": "1",
+        "isStopSign": true,
+        "ur": "(۱)",
+        "en": "(1)"
+      }
+    ]
+  },
+  {
+    "line": 3,
+    "type": "ayah",
+    "is_centered": true,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﱆ",
+        "l": "1:2:1",
+        "a": "2",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "سب تعریف",
+        "en": "All praises and thanks"
+      },
+      {
+        "c": "ﱇ",
+        "l": "1:2:2",
+        "a": "2",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "اللہ کے لیے ہے",
+        "en": "(be) to Allah"
+      },
+      {
+        "c": "ﱈ",
+        "l": "1:2:3",
+        "a": "2",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "جو رب ہے",
+        "en": "the Lord"
+      },
+      {
+        "c": "ﱉ",
+        "l": "1:2:4",
+        "a": "2",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "تمام جہانوں کا",
+        "en": "of the universe"
+      },
+      {
+        "c": "ﱊ",
+        "l": "1:2:5",
+        "a": "2",
+        "s": "1",
+        "isStopSign": true,
+        "ur": "(۲)",
+        "en": "(2)"
+      }
+    ]
+  },
+  {
+    "line": 4,
+    "type": "ayah",
+    "is_centered": true,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﱋ",
+        "l": "1:3:1",
+        "a": "3",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "جو بہت مہربان",
+        "en": "The Most Gracious"
+      },
+      {
+        "c": "ﱌ",
+        "l": "1:3:2",
+        "a": "3",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "بار بار رحم فرمانے والا ہے",
+        "en": "the Most Merciful"
+      },
+      {
+        "c": "ﱍ",
+        "l": "1:3:3",
+        "a": "3",
+        "s": "1",
+        "isStopSign": true,
+        "ur": "(۳)",
+        "en": "(3)"
+      },
+      {
+        "c": "ﱎ",
+        "l": "1:4:1",
+        "a": "4",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "مالک ہے",
+        "en": "(The) Master"
+      },
+      {
+        "c": "ﱏ",
+        "l": "1:4:2",
+        "a": "4",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "دن کا",
+        "en": "(of the) Day"
+      },
+      {
+        "c": "ﱐ",
+        "l": "1:4:3",
+        "a": "4",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "بدلے کے",
+        "en": "(of the) Judgment"
+      },
+      {
+        "c": "ﱑ",
+        "l": "1:4:4",
+        "a": "4",
+        "s": "1",
+        "isStopSign": true,
+        "ur": "(۴)",
+        "en": "(4)"
+      }
+    ]
+  },
+  {
+    "line": 5,
+    "type": "ayah",
+    "is_centered": true,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﱒ",
+        "l": "1:5:1",
+        "a": "5",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "صرف تیری",
+        "en": "You Alone"
+      },
+      {
+        "c": "ﱓ",
+        "l": "1:5:2",
+        "a": "5",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "ہم عبادت کرتے ہیں",
+        "en": "we worship"
+      },
+      {
+        "c": "ﱔ",
+        "l": "1:5:3",
+        "a": "5",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "اور صرف تجھ سے",
+        "en": "and You Alone"
+      },
+      {
+        "c": "ﱕ",
+        "l": "1:5:4",
+        "a": "5",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "ہم مدد چاہتے ہیں",
+        "en": "we ask for help"
+      },
+      {
+        "c": "ﱖ",
+        "l": "1:5:5",
+        "a": "5",
+        "s": "1",
+        "isStopSign": true,
+        "ur": "(۵)",
+        "en": "(5)"
+      },
+      {
+        "c": "ﱗ",
+        "l": "1:6:1",
+        "a": "6",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "دکھا ہم کو",
+        "en": "Guide us"
+      }
+    ]
+  },
+  {
+    "line": 6,
+    "type": "ayah",
+    "is_centered": true,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﱘ",
+        "l": "1:6:2",
+        "a": "6",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "راستہ",
+        "en": "(to) the path"
+      },
+      {
+        "c": "ﱙ",
+        "l": "1:6:3",
+        "a": "6",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "سیدھا",
+        "en": "the straight"
+      },
+      {
+        "c": "ﱚ",
+        "l": "1:6:4",
+        "a": "6",
+        "s": "1",
+        "isStopSign": true,
+        "ur": "(۶)",
+        "en": "(6)"
+      },
+      {
+        "c": "ﱛ",
+        "l": "1:7:1",
+        "a": "7",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "راستہ",
+        "en": "(The) path"
+      },
+      {
+        "c": "ﱜ",
+        "l": "1:7:2",
+        "a": "7",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "ان لوگوں کا",
+        "en": "(of) those"
+      },
+      {
+        "c": "ﱝ",
+        "l": "1:7:3",
+        "a": "7",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "انعام کیا تو نے",
+        "en": "You have bestowed (Your) Favors"
+      }
+    ]
+  },
+  {
+    "line": 7,
+    "type": "ayah",
+    "is_centered": true,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﱞ",
+        "l": "1:7:4",
+        "a": "7",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "اوپر ان کے",
+        "en": "on them"
+      },
+      {
+        "c": "ﱟ",
+        "l": "1:7:5",
+        "a": "7",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "نہ ان (لوگوں) کا",
+        "en": "not (of)"
+      },
+      {
+        "c": "ﱠ",
+        "l": "1:7:6",
+        "a": "7",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "غضب کیا گیا",
+        "en": "those who earned (Your) wrath"
+      },
+      {
+        "c": "ﱡ",
+        "l": "1:7:7",
+        "a": "7",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "اوپر ان کے",
+        "en": "on themselves"
+      }
+    ]
+  },
+  {
+    "line": 8,
+    "type": "ayah",
+    "is_centered": true,
+    "surah": "",
+    "words": [
+      {
+        "c": "ﱢ",
+        "l": "1:7:8",
+        "a": "7",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "اور نہ",
+        "en": "and not"
+      },
+      {
+        "c": "ﱣ",
+        "l": "1:7:9",
+        "a": "7",
+        "s": "1",
+        "isStopSign": false,
+        "ur": "ان (لوگوں) کا جو گمراہ ہیں / گم کردہ راہ ہیں",
+        "en": "(of) those who go astray"
+      },
+      {
+        "c": "ﱤ",
+        "l": "1:7:10",
+        "a": "7",
+        "s": "1",
+        "isStopSign": true,
+        "ur": "(۷)",
+        "en": "(7)"
+      }
+    ]
+  }
+]

@@ -1,0 +1,95 @@
+
+> quran-assistant@0.1.0 lint
+> eslint
+
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/app/login/page.tsx
+  10:17  warning  'session' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/app/page/[pageNumber]/page.tsx
+  1:10  warning  'redirect' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/HomeClient.tsx
+  21:48  warning  'alKahf' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/MediaPlayer.tsx
+  77:7  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/MediaPlayer.tsx:77:7
+  75 |       requestAnimationFrame(() => setIsVisible(true));
+  76 |     } else {
+> 77 |       setIsVisible(false);
+     |       ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  78 |     }
+  79 |   }, [currentAyah, isTafseerVisible]);
+  80 |                                                                react-hooks/set-state-in-effect
+  84:7  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/MediaPlayer.tsx:84:7
+  82 |   useEffect(() => {
+  83 |     if (currentAyah) {
+> 84 |       setTranslationKey(`${currentAyah.surah}:${currentAyah.ayah}-${translationId}`);
+     |       ^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  85 |     }
+  86 |   }, [currentAyah?.surah, currentAyah?.ayah, translationId]);
+  87 |  react-hooks/set-state-in-effect
+  86:6  warning  React Hook useEffect has a missing dependency: 'currentAyah'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             react-hooks/exhaustive-deps
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/MushafSpreadViewer.tsx
+    4:10  warning  'AnimatePresence' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+    4:27  warning  'motion' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-unused-vars
+   69:10  warning  'isFontLoaded' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+  299:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/MushafSpreadViewer.tsx:299:5
+  297 |
+  298 |   useEffect(() => {
+> 299 |     setMounted(true);
+      |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  300 |   }, []);
+  301 |
+  302 |   const handleToggle = (visible: boolean) => {  react-hooks/set-state-in-effect
+  545:11  warning  'targetKey' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+  649:10  warning  'direction' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+  670:9   warning  'variants' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/Navbar.tsx
+  95:17  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/SettingsClient.tsx
+    6:8   warning  'SearchIcon' is defined but never used                                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+   24:25  warning  'setReciterSearch' is assigned a value but never used                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+   25:29  warning  'setTranslationSearch' is assigned a value but never used                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+   27:9   warning  'filteredReciters' is assigned a value but never used                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+   32:9   warning  'filteredTranslations' is assigned a value but never used                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+  219:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/SideNavMenu.tsx
+  126:27  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/quran/AyahTafseerDrawer.tsx
+  90:16  warning  '_err' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/types/next-auth.d.ts
+  1:8  warning  'NextAuth' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 23 problems (3 errors, 20 warnings)
+

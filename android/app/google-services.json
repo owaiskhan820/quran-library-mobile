@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "563158769489",
+    "project_id": "quran-library-c962f",
+    "storage_bucket": "quran-library-c962f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563158769489:android:126c0ac1398a4ac5a4bd70",
+        "android_client_info": {
+          "package_name": "com.quranlibrary.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "563158769489-3bhjt3rto3goinb63c5rtkrkecumkke2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.quranlibrary.app",
+            "certificate_hash": "3a9cc6ce99e96299588fe1bacd398ce7f4d7476e"
+          }
+        },
+        {
+          "client_id": "563158769489-1mjarsuc85r4r86rke68hvl3j9rl3b6k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbdLW7pVOx-wdqOdTt7Qr0fQZ12BJ0GDQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "563158769489-1mjarsuc85r4r86rke68hvl3j9rl3b6k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

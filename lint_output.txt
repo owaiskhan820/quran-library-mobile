@@ -1,0 +1,185 @@
+
+> quran-assistant@0.1.0 lint
+> eslint
+
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/auth.ts
+  74:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  75:48  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  76:55  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  77:50  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/app/api/quran/verse/route.ts
+  26:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/app/api/tafsir/route.ts
+  27:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/app/login/page.tsx
+  10:17  warning  'session' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/app/page/[pageNumber]/page.tsx
+  3:10  warning  'redirect' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/HomeClient.tsx
+   3:20  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+  21:48  warning  'alKahf' is defined but never used     @typescript-eslint/no-unused-vars
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/LanguageSelectionModal.tsx
+  15:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/LanguageSelectionModal.tsx:15:7
+  13 |     const hasLanguage = localStorage.getItem('language') || localStorage.getItem('app_language');
+  14 |     if (!hasLanguage) {
+> 15 |       setShowModal(true);
+     |       ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  16 |     }
+  17 |   }, []);
+  18 |  react-hooks/set-state-in-effect
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/MediaPlayer.tsx
+  10:3  warning  'RotateCcw' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+  12:3  warning  'ChevronUp' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+  66:5  warning  'currentRepeatIndex' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+  67:5  warning  'rangeCycleIndex' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+  91:5  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/MediaPlayer.tsx:91:5
+  89 |   // Close menus when ayah changes or player is closed
+  90 |   useEffect(() => {
+> 91 |     setIsReciterMenuOpen(false);
+     |     ^^^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  92 |     setIsTranslationMenuOpen(false);
+  93 |     setIsRepeatMenuOpen(false);
+  94 |   }, [currentAyah?.surah, currentAyah?.ayah]);  react-hooks/set-state-in-effect
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/MushafSpreadViewer.tsx
+   14:10  warning  'updateUserPreferences' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+   61:19  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-explicit-any
+   62:29  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-explicit-any
+   90:6   warning  React Hook useLayoutEffect has a missing dependency: 'setMenuShift'. Either include it or remove the dependency array. If 'setMenuShift' changes too often, find the parent component that defines it and wrap that definition in useCallback                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         react-hooks/exhaustive-deps
+   93:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/MushafSpreadViewer.tsx:93:5
+  91 |
+  92 |   useEffect(() => {
+> 93 |     setIsFontLoaded(false);
+     |     ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  94 |     const fontName = `p${pageNumber}`;
+  95 |     const font = new FontFace(fontName, `url(/fonts/qpc/p${pageNumber}.woff2)`);
+  96 |       react-hooks/set-state-in-effect
+   95:11  warning  'font' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-unused-vars
+  200:35  warning  'e' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+  341:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/MushafSpreadViewer.tsx:341:7
+  339 |       }
+  340 |
+> 341 |       setShift(newShift);
+      |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  342 |     } else {
+  343 |       setShift(0);
+  344 |     }                                                                                                    react-hooks/set-state-in-effect
+  422:17  warning  'session' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  422:26  warning  'status' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+  424:5   warning  'playAyah' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+  425:5   warning  'playUrl' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  426:5   warning  'activeId' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+  427:5   warning  'wordTranslations' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+  436:56  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-explicit-any
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/Navbar.tsx
+  87:17  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/OnboardingTutorial.tsx
+  18:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/OnboardingTutorial.tsx:18:7
+  16 |
+  17 |     if (hasLanguage && !hasSeenOnboarding) {
+> 18 |       setShowModal(true);
+     |       ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  19 |     }
+  20 |   }, [language]); // Reacts when LanguageSelectionModal sets the language
+  21 |  react-hooks/set-state-in-effect
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/SettingsClient.tsx
+    6:8   warning  'SearchIcon' is defined but never used                                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+   24:25  warning  'setReciterSearch' is assigned a value but never used                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+   25:29  warning  'setTranslationSearch' is assigned a value but never used                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+   27:9   warning  'filteredReciters' is assigned a value but never used                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+   32:9   warning  'filteredTranslations' is assigned a value but never used                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+  219:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/SideNavMenu.tsx
+  122:27  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/components/quran/AyahTafseerDrawer.tsx
+  25:3   warning  'arabicWords' is defined but never used   @typescript-eslint/no-unused-vars
+  26:3   warning  'pageNumber' is defined but never used    @typescript-eslint/no-unused-vars
+  93:16  warning  'err' is defined but never used           @typescript-eslint/no-unused-vars
+  93:21  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/context/AudioContext.tsx
+  139:9   warning  'languageRef' is assigned a value but never used                       @typescript-eslint/no-unused-vars
+  166:18  warning  'e' is defined but never used                                          @typescript-eslint/no-unused-vars
+  172:49  error    Unexpected any. Specify a different type                               @typescript-eslint/no-explicit-any
+  394:57  warning  'surah' is defined but never used                                      @typescript-eslint/no-unused-vars
+  394:73  warning  'ayah' is defined but never used                                       @typescript-eslint/no-unused-vars
+  441:10  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  542:37  error    Unexpected any. Specify a different type                               @typescript-eslint/no-explicit-any
+  543:38  error    Unexpected any. Specify a different type                               @typescript-eslint/no-explicit-any
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/hooks/useAudio.ts
+  3:44  warning  'useRef' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/lib/db.ts
+  22:7  error  'globalWithMongo' is never reassigned. Use 'const' instead  prefer-const
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/lib/mongoose.ts
+   9:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  12:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/src/types/next-auth.d.ts
+  1:8  warning  'NextAuth' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/test-db.js
+  1:25  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:1   error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/home/owaiskhan/Documents/QCP/quran_assistant_web/quran-assistant/test-mongo.js
+  1:25  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+✖ 60 problems (24 errors, 36 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+
