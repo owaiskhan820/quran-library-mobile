@@ -4,10 +4,12 @@ import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAudioContext, RECITERS, TRANSLATIONS } from "@/context/AudioContext";
+import { TAFSIRS } from "@/lib/tafsirs";
 import { useAuth } from "@/context/AuthContext";
 import { getManifestSnapshot, getStorageUsage } from "@/lib/offline/manifest";
 import { deleteSurahAudio, subscribeActiveDownloads } from "@/lib/offline/downloadManager";
 import chaptersTiny from "../../../public/data/chapters-tiny.json";
+import TafsirTranslationDownloads from "@/components/offline/TafsirTranslationDownloads";
 
 import {
   ChevronLeft,
@@ -34,7 +36,7 @@ interface ChapterTinyEntry {
 }
 const CHAPTERS = chaptersTiny as unknown as ChapterTinyEntry[];
 
-type SubView = "main" | "language" | "reciter" | "translation" | "downloads";
+type SubView = "main" | "language" | "reciter" | "translation" | "tafsir" | "downloads" | "textDownloads";
 
 function formatBytes(bytes: number): string {
   if (bytes === 0) return "0.0 MB";
@@ -62,6 +64,8 @@ export default function SettingsPage() {
     setReciter,
     translationId,
     setTranslationId,
+    tafsirId,
+    setTafsir,
     playAyah
   } = useAudioContext();
 
@@ -74,6 +78,9 @@ export default function SettingsPage() {
 
   const [searchTranslationQuery, setSearchTranslationQuery] = useState("");
   const [showTranslationSearch, setShowTranslationSearch] = useState(false);
+
+  const [searchTafsirQuery, setSearchTafsirQuery] = useState("");
+  const [showTafsirSearch, setShowTafsirSearch] = useState(false);
 
   const [searchDownloadQuery, setSearchDownloadQuery] = useState("");
 
@@ -129,6 +136,10 @@ export default function SettingsPage() {
     const trans = TRANSLATIONS.find(t => t.id === translationId);
     return trans ? trans.name : "Sahih International";
   }, [translationId]);
+  const activeTafsirName = useMemo(() => {
+    const tafsir = TAFSIRS.find(t => t.id === tafsirId);
+    return tafsir ? tafsir.name : "Ibn Kathir (Abridged)";
+  }, [tafsirId]);
 
   // Reciter list filtered by search query
   const filteredReciters = useMemo(() => {
@@ -148,6 +159,16 @@ export default function SettingsPage() {
       t.author.toLowerCase().includes(query)
     );
   }, [searchTranslationQuery]);
+
+  // Tafsir list filtered by search query
+  const filteredTafsirs = useMemo(() => {
+    const query = searchTafsirQuery.trim().toLowerCase();
+    if (!query) return TAFSIRS;
+    return TAFSIRS.filter(t =>
+      t.name.toLowerCase().includes(query) ||
+      t.author.toLowerCase().includes(query)
+    );
+  }, [searchTafsirQuery]);
 
   // Download list computation & filtering
   const downloadedSurahs = useMemo(() => {
@@ -251,8 +272,14 @@ export default function SettingsPage() {
         {activeView === "translation" && (
           <h1 className="text-xl font-bold text-emerald-800 flex-1 pl-4">Default Translation</h1>
         )}
+        {activeView === "tafsir" && (
+          <h1 className="text-xl font-bold text-emerald-800 flex-1 pl-4">Default Tafsir</h1>
+        )}
         {activeView === "downloads" && (
           <h1 className="text-xl font-bold text-emerald-800 flex-1 pl-4">My Downloads</h1>
+        )}
+        {activeView === "textDownloads" && (
+          <h1 className="text-xl font-bold text-emerald-800 flex-1 pl-4">Offline Tafsir & Translations</h1>
         )}
 
         {/* Right action based on activeView */}
@@ -294,6 +321,14 @@ export default function SettingsPage() {
             <Search size={20} />
           </button>
         )}
+        {activeView === "tafsir" && (
+          <button
+            onClick={() => setShowTafsirSearch(!showTafsirSearch)}
+            className={`p-2 rounded-full transition-colors ${showTafsirSearch ? "bg-emerald-50 text-emerald-800" : "text-gray-500 hover:bg-gray-50"}`}
+          >
+            <Search size={20} />
+          </button>
+        )}
         {activeView === "downloads" && (
           <button className="p-2 rounded-full text-gray-500 hover:bg-gray-50">
             <MoreVertical size={20} />
@@ -306,7 +341,7 @@ export default function SettingsPage() {
         
         {/* ================= VIEW: MAIN DASHBOARD ================= */}
         {activeView === "main" && (
-          <div className="flex-1 bg-black p-6 flex flex-col justify-between">
+          <div className="flex-1 bg-slate-50 p-6 flex flex-col justify-between">
             <div className="w-full">
               
               {/* White Menu Card Container */}
@@ -363,6 +398,23 @@ export default function SettingsPage() {
                   <ChevronRight size={20} className="text-gray-300 group-hover:text-emerald-800 transition-colors" />
                 </button>
 
+                {/* 3b. Default Tafsir Item */}
+                <button
+                  onClick={() => setActiveView("tafsir")}
+                  className="flex items-center justify-between py-5 text-left w-full focus:outline-none group"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-teal-50 flex items-center justify-center text-teal-800">
+                      <BookOpen size={22} strokeWidth={2} />
+                    </div>
+                    <div>
+                      <h2 className="font-sans font-bold text-gray-900 text-lg leading-tight">Default Tafsir</h2>
+                      <p className="font-sans text-emerald-800 text-sm font-semibold mt-0.5">{activeTafsirName}</p>
+                    </div>
+                  </div>
+                  <ChevronRight size={20} className="text-gray-300 group-hover:text-emerald-800 transition-colors" />
+                </button>
+
                 {/* 4. My Downloads Item */}
                 <button
                   onClick={() => setActiveView("downloads")}
@@ -375,6 +427,23 @@ export default function SettingsPage() {
                     <div>
                       <h2 className="font-sans font-bold text-gray-900 text-lg leading-tight">My Downloads</h2>
                       <p className="font-sans text-gray-500 text-sm font-medium mt-0.5">{storageInfo.usedStr} used</p>
+                    </div>
+                  </div>
+                  <ChevronRight size={20} className="text-gray-300 group-hover:text-emerald-800 transition-colors" />
+                </button>
+
+                {/* 5. Offline Tafsir & Translations Item */}
+                <button
+                  onClick={() => setActiveView("textDownloads")}
+                  className="flex items-center justify-between py-5 text-left w-full focus:outline-none group"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-teal-50 flex items-center justify-center text-teal-800">
+                      <BookOpen size={22} strokeWidth={2} />
+                    </div>
+                    <div>
+                      <h2 className="font-sans font-bold text-gray-900 text-lg leading-tight">Offline Tafsir & Translations</h2>
+                      <p className="font-sans text-gray-500 text-sm font-medium mt-0.5">Download for offline reading</p>
                     </div>
                   </div>
                   <ChevronRight size={20} className="text-gray-300 group-hover:text-emerald-800 transition-colors" />
@@ -650,41 +719,94 @@ export default function SettingsPage() {
           </div>
         )}
 
+        {/* ================= VIEW: DEFAULT TAFSIR ================= */}
+        {activeView === "tafsir" && (
+          <div className="flex-1 bg-slate-50 p-6 flex flex-col gap-6">
+
+            {/* Search Input Box */}
+            {showTafsirSearch && (
+              <div className="relative animate-fade-in">
+                <input
+                  type="text"
+                  placeholder="Search tafsirs..."
+                  value={searchTafsirQuery}
+                  onChange={(e) => setSearchTafsirQuery(e.target.value)}
+                  className="w-full pl-11 pr-4 py-3 bg-white border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-800/10 focus:border-emerald-800/40 transition-all placeholder:text-gray-400 shadow-sm"
+                />
+                <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+              </div>
+            )}
+
+            <p className="text-sm text-gray-500 leading-normal">
+              Select your preferred tafsir (commentary). This is what opens by default when you tap the tafsir icon while reading.
+            </p>
+
+            {/* Tafsir Options Cards List */}
+            <div className="space-y-3 overflow-y-auto max-h-[65vh] pb-10 custom-scrollbar pr-1">
+              {filteredTafsirs.map((t) => {
+                const isSelected = tafsirId === t.id;
+                const initials = getInitials(t.name);
+
+                return (
+                  <button
+                    key={t.id}
+                    onClick={() => setTafsir(t.id)}
+                    className={`w-full text-left p-4 rounded-2xl border bg-white flex items-center gap-4 transition-all focus:outline-none shadow-sm ${
+                      isSelected
+                        ? "border-emerald-800 bg-emerald-50/20 ring-2 ring-emerald-800/5"
+                        : "border-gray-200"
+                    }`}
+                  >
+                    {/* Circular Badge with Initials */}
+                    <div className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 border shadow-sm text-xs font-bold ${
+                      isSelected ? "bg-emerald-800 text-white border-emerald-800/20" : "bg-gray-100 text-emerald-800 border-gray-200"
+                    }`}>
+                      {initials}
+                    </div>
+
+                    <div className="flex-1">
+                      <h4 className={`font-bold text-sm leading-tight ${isSelected ? "text-emerald-950 font-extrabold" : "text-gray-900"}`}>
+                        {t.name}
+                      </h4>
+                      <p className="text-[11px] text-gray-400 mt-1 leading-normal">
+                        {t.author} &bull; <span className="capitalize">{t.language}</span>
+                      </p>
+                    </div>
+
+                    {isSelected && (
+                      <div className="w-6 h-6 rounded-full bg-emerald-800 text-white flex items-center justify-center shadow-md shrink-0">
+                        <Check size={14} strokeWidth={3} />
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+
+              {filteredTafsirs.length === 0 && (
+                <p className="text-center text-sm text-gray-400 py-10">No tafsirs match your search.</p>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* ================= VIEW: MY DOWNLOADS ================= */}
         {activeView === "downloads" && (
           <div className="flex-1 bg-slate-50 p-6 flex flex-col gap-6">
             
-            {/* Device Storage Info Card */}
-            <div className="bg-white rounded-3xl p-5 border border-gray-200 shadow-sm flex flex-col gap-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest block">Device Storage</span>
-                  <p className="text-lg text-gray-900 mt-1">
-                    <span className="font-black text-emerald-800">{storageInfo.usedStr}</span>{" "}
-                    <span className="text-gray-400 font-medium text-sm">of 32 GB used</span>
-                  </p>
-                </div>
-                <span className="text-sm font-black text-emerald-800">{storageInfo.percentUsed}% Full</span>
+            {/* Offline Storage Info Card */}
+            <div className="bg-white rounded-3xl p-6 border border-gray-200 shadow-sm flex items-center gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-teal-50 flex items-center justify-center text-teal-800 shrink-0">
+                <Download size={22} />
               </div>
-
-              {/* Progress Slider bar */}
-              <div className="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-emerald-800 rounded-full transition-all duration-500"
-                  style={{ width: `${storageInfo.percentUsed}%` }}
-                />
-              </div>
-
-              {/* Legend details */}
-              <div className="flex items-center gap-6 text-[11px] text-gray-400 font-bold uppercase tracking-wider">
-                <span className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-800 inline-block" />
-                  Downloads ({storageInfo.filesCount} files)
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-gray-200 inline-block" />
-                  Other Data
-                </span>
+              <div>
+                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest block">Offline Storage</span>
+                <p className="text-xl text-gray-900 mt-1">
+                  <span className="font-black text-emerald-800">{storageInfo.usedStr}</span>{" "}
+                  <span className="text-gray-400 font-medium text-sm">used</span>
+                </p>
+                <p className="text-xs text-gray-400 mt-0.5 font-medium">
+                  {storageInfo.filesCount} files downloaded for offline use
+                </p>
               </div>
             </div>
 
@@ -756,6 +878,16 @@ export default function SettingsPage() {
                 )}
               </div>
             </div>
+          </div>
+        )}
+
+        {/* ================= VIEW: OFFLINE TAFSIR & TRANSLATIONS ================= */}
+        {activeView === "textDownloads" && (
+          <div className="flex-1 bg-slate-50 p-6 flex flex-col gap-6">
+            <p className="text-sm text-gray-500 leading-normal">
+              Download tafsir commentary and translations for offline reading. Each is a one-time download; no internet needed afterward.
+            </p>
+            <TafsirTranslationDownloads />
           </div>
         )}
 

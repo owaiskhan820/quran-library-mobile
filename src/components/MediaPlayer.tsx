@@ -17,7 +17,8 @@ import {
   SkipBack,
   SkipForward,
   Repeat,
-  Repeat1
+  Repeat1,
+  ChevronDown
 } from "lucide-react";
 import { useState, useEffect, useRef, memo } from "react";
 
@@ -57,6 +58,113 @@ const MediaPlayer = memo(function MediaPlayer() {
   const [isVisible, setIsVisible] = useState(false);
   const [translationKey, setTranslationKey] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Floating Minimized Player States
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartRef = useRef({ x: 0, y: 0 });
+  const touchStartPosRef = useRef({ x: 0, y: 0 });
+  const longPressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Restore/reset minimize state when a new manual audio selection is made
+  useEffect(() => {
+    setIsMinimized(false);
+    setPos({ x: 0, y: 0 });
+  }, [currentAyah?.surah, currentAyah?.ayah]);
+
+  useEffect(() => {
+    return () => {
+      if (longPressTimerRef.current) clearTimeout(longPressTimerRef.current);
+    };
+  }, []);
+
+  const startLongPressTimer = () => {
+    if (longPressTimerRef.current) clearTimeout(longPressTimerRef.current);
+    longPressTimerRef.current = setTimeout(() => {
+      setIsMinimized(false);
+      setPos({ x: 0, y: 0 });
+      if (typeof navigator !== "undefined" && navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+    }, 600);
+  };
+
+  const cancelLongPressTimer = () => {
+    if (longPressTimerRef.current) {
+      clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
+    }
+  };
+
+  const handleDragStart = (clientX: number, clientY: number) => {
+    setIsDragging(false);
+    dragStartRef.current = { x: clientX - pos.x, y: clientY - pos.y };
+    touchStartPosRef.current = { x: clientX, y: clientY };
+    startLongPressTimer();
+  };
+
+  const handleDragMove = (clientX: number, clientY: number) => {
+    const dist = Math.hypot(clientX - touchStartPosRef.current.x, clientY - touchStartPosRef.current.y);
+    if (dist > 5) {
+      setIsDragging(true);
+      cancelLongPressTimer();
+      setPos({
+        x: clientX - dragStartRef.current.x,
+        y: clientY - dragStartRef.current.y
+      });
+    }
+  };
+
+  const handleDragEnd = () => {
+    cancelLongPressTimer();
+    setTimeout(() => {
+      setIsDragging(false);
+    }, 50);
+  };
+
+  const handleButtonRelease = () => {
+    cancelLongPressTimer();
+    if (!isDragging) {
+      togglePlay();
+    }
+    handleDragEnd();
+  };
+
+  const onMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    handleDragStart(e.clientX, e.clientY);
+    
+    const onMouseMove = (moveEvent: MouseEvent) => {
+      handleDragMove(moveEvent.clientX, moveEvent.clientY);
+    };
+    
+    const onMouseUp = () => {
+      handleButtonRelease();
+      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mouseup", onMouseUp);
+    };
+    
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseup", onMouseUp);
+  };
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    handleDragStart(touch.clientX, touch.clientY);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    handleDragMove(touch.clientX, touch.clientY);
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    e.preventDefault();
+    handleButtonRelease();
+  };
 
 
 
@@ -111,20 +219,20 @@ const MediaPlayer = memo(function MediaPlayer() {
   }, [currentAyah?.surah, currentAyah?.ayah]);
 
   if (!currentAyah || isTafseerVisible) {
-    // Render invisible but mounted so the slide-out transition plays
     if (!currentAyah) return null;
   }
 
   const surahName = getSurahNameArabic(currentAyah.surah);
 
   return (
-    // Outer slide-in/out container — pure CSS transform + opacity
-    <div
+    <>
+      {/* Outer slide-in/out container — pure CSS transform + opacity */}
+      <div
       className={`fixed z-[100] transition-all duration-300 ease-out will-change-transform ${
         isMobile
           ? "bottom-0 left-0 right-0 w-full max-w-full"
           : "bottom-6 left-1/2 w-[95vw] max-w-md -translate-x-1/2"
-      } ${isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"}`}
+      } ${isVisible && !isMinimized ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"}`}
       style={isMobile ? { paddingBottom: "env(safe-area-inset-bottom)" } : undefined}
     >
       <div ref={containerRef} className={`relative bg-white/95 backdrop-blur-md border border-white/30 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] p-4 flex flex-col gap-3 overflow-visible transition-all duration-300 ${
@@ -378,12 +486,22 @@ const MediaPlayer = memo(function MediaPlayer() {
               <span className="text-muted text-sm font-medium">Ayah {currentAyah.ayah}</span>
             </div>
           </div>
-          <button 
-            onClick={stopAudio}
-            className="p-1.5 hover:bg-black/5 rounded-full transition-colors text-muted hover:text-primary"
-          >
-            <X size={18} />
-          </button>
+          <div className="flex items-center gap-1 shrink-0">
+            <button 
+              onClick={() => setIsMinimized(true)}
+              className="p-1.5 hover:bg-black/5 rounded-full transition-colors text-muted hover:text-primary mr-1"
+              title="Minimize Player"
+            >
+              <ChevronDown size={18} />
+            </button>
+            <button 
+              onClick={stopAudio}
+              className="p-1.5 hover:bg-black/5 rounded-full transition-colors text-muted hover:text-primary"
+              title="Close Player"
+            >
+              <X size={18} />
+            </button>
+          </div>
         </div>
 
         {/* Translation Text Display — CSS opacity fade keyed by ayah */}
@@ -481,6 +599,30 @@ const MediaPlayer = memo(function MediaPlayer() {
         </div>
       </div>
     </div>
+
+      {/* Floating Minimized Player Button */}
+      {currentAyah && !isTafseerVisible && isMinimized && (
+        <div
+          onMouseDown={onMouseDown}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+          className="fixed z-[99999] cursor-grab active:cursor-grabbing select-none w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-2xl border-2 border-white/90 transition-transform duration-75 active:scale-95"
+          style={{
+            bottom: "120px",
+            right: "24px",
+            transform: `translate3d(${pos.x}px, ${pos.y}px, 0)`,
+            touchAction: "none"
+          }}
+          title="Drag to move. Tap to Play/Pause. Hold to restore."
+        >
+          {isPlaying ? <Pause size={22} fill="currentColor" /> : <Play size={22} fill="currentColor" className="ml-0.5" />}
+          {isPlaying && (
+            <span className="absolute inset-0 rounded-full border-2 border-emerald-400 animate-ping opacity-75" />
+          )}
+        </div>
+      )}
+    </>
   );
 });
 

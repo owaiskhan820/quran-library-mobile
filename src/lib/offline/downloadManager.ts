@@ -26,9 +26,10 @@ import { invalidateTranslationCache } from "./resolve/translation";
 import { invalidateTafsirCache } from "./resolve/tafsir";
 
 // Base URL where the maintainer-generated tafsir/translation bundles
-// (scripts/build-tafsir-bundles.mjs output) are hosted for download.
-// TODO: finalize hosting location (GitHub raw / release asset / other).
-export const CONTENT_BUNDLE_BASE_URL = "https://raw.githubusercontent.com/REPLACE_ME/REPLACE_ME/main/content-bundles";
+// (scripts/build-tafsir-bundles.mjs output) are hosted for download —
+// the content-bundles/ folder committed to this same repo, served via
+// GitHub's raw file CDN.
+export const CONTENT_BUNDLE_BASE_URL = "https://raw.githubusercontent.com/owaiskhan820/quran-library-mobile/main/content-bundles";
 
 type ChapterTinyEntry = { id: number; verses_count: number };
 const CHAPTERS = chaptersTiny as unknown as ChapterTinyEntry[];

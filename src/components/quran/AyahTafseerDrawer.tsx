@@ -1,7 +1,7 @@
 "use client";
 
-import { X, ChevronDown, Loader2 } from "lucide-react";
-import { useState, useEffect, useMemo } from "react";
+import { ChevronLeft, ChevronDown, Loader2 } from "lucide-react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { TAFSIRS, DEFAULT_TAFSIR_ID, getTafsirsByLanguage } from "@/lib/tafsirs";
 import { resolveTafsirText } from "@/lib/offline/resolve/tafsir";
 
@@ -14,6 +14,7 @@ interface AyahTafseerDrawerProps {
   arabicWords?: string[];
   pageNumber?: number;
   language: "en" | "ur";
+  tafsirId: number;
 }
 
 export default function AyahTafseerDrawer({
@@ -23,6 +24,7 @@ export default function AyahTafseerDrawer({
   surahName,
   ayahNumber,
   language,
+  tafsirId,
 }: AyahTafseerDrawerProps) {
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [selectedTafseerId, setSelectedTafseerId] = useState(DEFAULT_TAFSIR_ID);
@@ -42,9 +44,21 @@ export default function AyahTafseerDrawer({
     return getTafsirsByLanguage(selectedLanguage);
   }, [selectedLanguage]);
 
-  // Handle Initial Defaults
+  // Handle Initial Defaults — prefer the user's persisted tafsir preference
+  // (set via Settings or a prior manual pick in this drawer) over a hardcoded
+  // guess based on the reading-language toggle. Only fall back to the
+  // language-based guess when the user has never actually chosen one (i.e.
+  // the persisted value is still sitting at its initial default).
   useEffect(() => {
     if (isOpen && !selectedLanguage) {
+      if (tafsirId && tafsirId !== DEFAULT_TAFSIR_ID) {
+        const persisted = TAFSIRS.find(t => t.id === tafsirId);
+        if (persisted) {
+          setSelectedLanguage(persisted.language);
+          setSelectedTafseerId(persisted.id);
+          return;
+        }
+      }
       if (language === "ur") {
         setSelectedLanguage("urdu");
         setSelectedTafseerId(159); // Bayan ul Quran
@@ -53,7 +67,34 @@ export default function AyahTafseerDrawer({
         setSelectedTafseerId(DEFAULT_TAFSIR_ID);
       }
     }
-  }, [isOpen, language, selectedLanguage]);
+  }, [isOpen, language, selectedLanguage, tafsirId]);
+
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
+  // Register overlay close handler for Android hardware back button
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleClose = () => {
+      onCloseRef.current();
+    };
+
+    if (typeof window !== "undefined") {
+      (window as any).__activeOverlays = (window as any).__activeOverlays || [];
+      (window as any).__activeOverlays.push(handleClose);
+    }
+
+    return () => {
+      if (typeof window !== "undefined" && (window as any).__activeOverlays) {
+        (window as any).__activeOverlays = (window as any).__activeOverlays.filter(
+          (cb: any) => cb !== handleClose
+        );
+      }
+    };
+  }, [isOpen]);
 
   // Fix: Sync Tafseer selection when Language changes
   useEffect(() => {
@@ -88,9 +129,20 @@ export default function AyahTafseerDrawer({
           return;
         }
 
-        const response = await fetch(`https://api.quran.com/api/v4/tafsirs/${selectedTafseerId}/by_ayah/${ayahKey}`, {
-          headers: { Accept: 'application/json' }
-        });
+        // Without a timeout, a fetch on a genuinely offline device can hang
+        // far longer than feels reasonable instead of failing fast with a
+        // clear "check your connection" message.
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 8000);
+        let response: Response;
+        try {
+          response = await fetch(`https://api.quran.com/api/v4/tafsirs/${selectedTafseerId}/by_ayah/${ayahKey}`, {
+            headers: { Accept: 'application/json' },
+            signal: controller.signal,
+          });
+        } finally {
+          clearTimeout(timeoutId);
+        }
         const data = await response.json();
 
         if (data.error) {
@@ -130,25 +182,26 @@ export default function AyahTafseerDrawer({
 
       {/* Side Drawer Unit */}
       <div
-        className={`fixed top-0 right-0 bottom-0 z-[1010] w-[90vw] max-w-[420px] bg-white shadow-2xl flex flex-col will-change-transform transition-transform duration-300 ease-out ${isOpen ? "translate-x-0" : "translate-x-full"} ${siteIsUrdu ? "font-sans text-right" : ""}`}
+        className={`fixed top-0 right-0 bottom-0 z-[1010] w-full max-w-none bg-white shadow-2xl flex flex-col will-change-transform transition-transform duration-300 ease-out ${isOpen ? "translate-x-0" : "translate-x-full"} ${siteIsUrdu ? "font-sans text-right" : ""}`}
       >
         {/* Nav Header */}
             <div 
-              className="flex items-center justify-between px-6 border-b border-divider bg-white sticky top-0 z-10"
-              style={{ paddingTop: "calc(var(--safe-area-inset-top, 0px) + 1.25rem)", paddingBottom: "1.25rem" }}
+              className="flex items-center gap-3 px-6 border-b border-divider bg-white sticky top-0 z-10"
+              style={{ paddingTop: "calc(var(--safe-area-inset-top, 0px) + 1rem)", paddingBottom: "1rem" }}
             >
-              <div className={`flex flex-col ${siteIsUrdu ? "items-end" : "items-start"}`}>
+              <button
+                onClick={onClose}
+                className="p-2 -ml-2 hover:bg-gray-100 rounded-full transition-all text-emerald-800 active:scale-95 duration-200 shrink-0"
+                aria-label="Go back"
+              >
+                <ChevronLeft size={24} strokeWidth={2.5} />
+              </button>
+              <div className={`flex-1 flex flex-col ${siteIsUrdu ? "items-end text-right pr-2" : "items-start pl-2"}`}>
                 <h2 className={`text-xl font-bold text-gray-900 ${siteIsUrdu ? "font-urdu" : "font-sans"}`}>
                   {siteIsUrdu ? `${surahName} - آیت ${ayahNumber}` : `${surahName} - Ayah ${ayahNumber}`}
                 </h2>
-                <p className="text-[10px] text-primary/60 font-black uppercase tracking-[0.2em] mt-0.5">Commentary Index</p>
+                <p className="text-[10px] text-primary/60 font-black uppercase tracking-[0.2em] mt-0.5">Commentary / Tafseer</p>
               </div>
-              <button
-                onClick={onClose}
-                className="p-2.5 hover:bg-gray-100 rounded-full transition-all text-gray-400 hover:text-primary hover:rotate-90 duration-300"
-              >
-                <X size={20} />
-              </button>
             </div>
 
             {/* Selection Engine */}
@@ -191,7 +244,10 @@ export default function AyahTafseerDrawer({
             </div>
 
             {/* Viewport */}
-            <div className="flex-1 overflow-y-auto px-6 py-8 space-y-10 book-scrollbar bg-white">
+            <div 
+              className="flex-1 overflow-y-auto px-6 py-8 space-y-10 book-scrollbar bg-white"
+              style={{ WebkitOverflowScrolling: "touch" }}
+            >
               {/* Dynamic Content Core */}
               <div
                 className={`min-h-[200px] tafsir-content pb-10
@@ -207,7 +263,7 @@ export default function AyahTafseerDrawer({
                       <Loader2 className="w-10 h-10 text-primary animate-spin" />
                       <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl scale-150 animate-pulse" />
                     </div>
-                    <p className="text-xs text-primary font-bold uppercase tracking-widest animate-pulse">Consulting Scholars...</p>
+                    <p className="text-xs text-primary font-bold uppercase tracking-widest animate-pulse">Fetching your tafseer...</p>
                   </div>
                 ) : error ? (
                   <div className="bg-red-50/50 p-8 rounded-3xl border border-red-100/50 flex flex-col items-center text-center gap-4">

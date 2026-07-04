@@ -404,7 +404,7 @@ export default function SideNavMenu({
                           </div>
                           
                           <span 
-                            className={`text-3xl leading-none text-right ${
+                            className={`text-xl leading-none text-right ${
                               isActive ? "text-emerald-800" : "text-primary"
                             }`}
                             style={{ 

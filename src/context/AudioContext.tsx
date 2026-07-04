@@ -8,6 +8,7 @@ import { db } from "@/lib/firebase";
 import { useAuth } from "@/context/AuthContext";
 import { resolveAyahAudioSrc, pruneStaleAyahAudio } from "@/lib/offline/resolve/audio";
 import { resolveTranslationText } from "@/lib/offline/resolve/translation";
+import { TAFSIRS, DEFAULT_TAFSIR_ID } from "@/lib/tafsirs";
 
 const chaptersTiny = chapters as ChapterTiny[];
 
@@ -40,6 +41,7 @@ interface AudioActionsType {
   setReciter: (id: number) => void;
   stopAudio: () => void;
   setTranslationId: (id: number) => void;
+  setTafsir: (id: number) => void;
   setRepeatMode: (mode: 'none' | 'single' | 'range') => void;
   setRepeatCount: (count: number) => void;
   setRepeatRange: (range: { start: AyahId | null, end: AyahId | null }) => void;
@@ -57,6 +59,7 @@ interface AudioStateType {
   isAutoplay: boolean;
   reciterId: number;
   translationId: number;
+  tafsirId: number;
   activeId: string | null;
   translationText: string | null;
   repeatMode: 'none' | 'single' | 'range';
@@ -148,6 +151,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   // Persistent Settings
   const [reciterId, setReciterId] = useState(RECITERS[0].id);
   const [translationId, setTranslationId] = useState(20);
+  const [tafsirId, setTafsirIdState] = useState(DEFAULT_TAFSIR_ID);
 
   // Hydration-safe persistent settings initialization
   useEffect(() => {
@@ -184,17 +188,22 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const savedLang = localStorage.getItem('language') || localStorage.getItem('app_language');
     const savedReciter = localStorage.getItem('preferred_qari');
     const savedTranslation = localStorage.getItem('preferred_translation');
+    const savedTafsir = localStorage.getItem('preferred_tafsir');
     const savedRead = localStorage.getItem('last_opened_page');
-    
+
     if (savedLang === 'ur' || savedLang === 'en') setLanguageState(savedLang);
-    
+
     const pRec = Number(savedReciter);
     const pTrans = Number(savedTranslation);
+    const pTafsir = Number(savedTafsir);
     if (!isNaN(pRec) && pRec > 0) setReciterId(pRec);
     if (!isNaN(pTrans) && savedTranslation !== null && savedTranslation !== "undefined") {
       setTranslationId(pTrans === 0 || TRANSLATIONS.some(t => t.id === pTrans) ? pTrans : 20);
     }
-    
+    if (!isNaN(pTafsir) && savedTafsir !== null && savedTafsir !== "undefined" && TAFSIRS.some(t => t.id === pTafsir)) {
+      setTafsirIdState(pTafsir);
+    }
+
     if (savedRead && savedRead !== "undefined") {
       try {
         const parsed = JSON.parse(savedRead);
@@ -248,6 +257,10 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         if (typeof data.preferred_translation === 'number') {
           setTranslationId(data.preferred_translation);
           localStorage.setItem('preferred_translation', String(data.preferred_translation));
+        }
+        if (typeof data.preferred_tafsir === 'number') {
+          setTafsirIdState(data.preferred_tafsir);
+          localStorage.setItem('preferred_tafsir', String(data.preferred_tafsir));
         }
         if (data.last_opened_page) {
           setLastReadState({
@@ -447,6 +460,8 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const playPromiseRef = useRef<Promise<void> | null>(null);
   const playAyahRef = useRef<(surah: number, ayah: number, shouldPlay?: boolean, overrideReciterId?: number, isInternal?: boolean) => void>(null);
+  const playNextAyahRef = useRef<() => void>(null);
+  const playPreviousAyahRef = useRef<() => void>(null);
 
   const playAyah = useCallback(async (surah: number, ayah: number, shouldPlay = false, overrideReciterId?: number, isInternal = false) => {
     if (!ayahAudioRef.current) return;
@@ -493,6 +508,61 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   useEffect(() => {
     playAyahRef.current = playAyah;
   }, [playAyah]);
+
+  // Media Session Metadata Sync
+  useEffect(() => {
+    if (typeof window === "undefined" || !("mediaSession" in navigator) || !currentAyah) return;
+
+    const targetReciter = RECITERS.find(r => r.id === reciterId);
+    const reciterName = targetReciter ? targetReciter.name : "Quran Reciter";
+    const chapter = chaptersTiny.find(c => Number(c.id) === Number(currentAyah.surah));
+    const surahName = chapter ? chapter.name_simple : `Surah ${currentAyah.surah}`;
+
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: `Surah ${surahName} - Ayah ${currentAyah.ayah}`,
+      artist: reciterName,
+      album: "Quran Library",
+      artwork: [
+        { src: "/icon.png", sizes: "512x512", type: "image/png" }
+      ]
+    });
+
+    navigator.mediaSession.playbackState = isPlaying ? "playing" : "paused";
+  }, [currentAyah, isPlaying, reciterId]);
+
+  // Media Session Action Handlers
+  useEffect(() => {
+    if (typeof window === "undefined" || !("mediaSession" in navigator)) return;
+
+    try {
+      navigator.mediaSession.setActionHandler("play", () => {
+        if (ayahAudioRef.current) {
+          ayahAudioRef.current.play().catch(() => {});
+        }
+      });
+      navigator.mediaSession.setActionHandler("pause", () => {
+        if (ayahAudioRef.current) {
+          ayahAudioRef.current.pause();
+        }
+      });
+      navigator.mediaSession.setActionHandler("nexttrack", () => {
+        playNextAyahRef.current?.();
+      });
+      navigator.mediaSession.setActionHandler("previoustrack", () => {
+        playPreviousAyahRef.current?.();
+      });
+    } catch (err) {
+      console.warn("MediaSession action handlers registration failed:", err);
+    }
+
+    return () => {
+      if (!("mediaSession" in navigator)) return;
+      navigator.mediaSession.setActionHandler("play", null);
+      navigator.mediaSession.setActionHandler("pause", null);
+      navigator.mediaSession.setActionHandler("nexttrack", null);
+      navigator.mediaSession.setActionHandler("previoustrack", null);
+    };
+  }, []);
 
   const playUrl = useCallback((url: string, id: string) => {
     if (!wordAudioRef.current) return;
@@ -550,6 +620,11 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
     playAyah(prevSurah, prevAyah, true);
   }, [currentAyah, playAyah]);
+
+  useEffect(() => {
+    playNextAyahRef.current = playNextAyah;
+    playPreviousAyahRef.current = playPreviousAyah;
+  }, [playNextAyah, playPreviousAyah]);
 
   const togglePlay = useCallback(async () => {
     if (!ayahAudioRef.current || !currentAyah) return;
@@ -631,6 +706,11 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     syncPreferences({ preferred_translation: id });
   }, [syncPreferences]);
 
+  const setTafsir = useCallback((id: number) => {
+    setTafsirIdState(id);
+    syncPreferences({ preferred_tafsir: id });
+  }, [syncPreferences]);
+
 
   const fetchAyahTranslation = useCallback(async (surah: number, ayah: number, tId: number) => {
     const key = `${surah}:${ayah}:${tId}`;
@@ -651,7 +731,17 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
 
     try {
-      const res = await fetch(`https://api.quran.com/api/v4/quran/translations/${tId}?verse_key=${surah}:${ayah}`);
+      // Fail fast on a genuinely offline device instead of hanging indefinitely.
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
+      let res: Response;
+      try {
+        res = await fetch(`https://api.quran.com/api/v4/quran/translations/${tId}?verse_key=${surah}:${ayah}`, {
+          signal: controller.signal,
+        });
+      } finally {
+        clearTimeout(timeoutId);
+      }
       const data = await res.json();
       if (data.translations && data.translations.length > 0) {
         const text = data.translations[0].text.replace(/<[^>]*>?/gm, '');
@@ -685,6 +775,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     playAyah, playUrl, togglePlay, toggleAutoplay,
     playNextAyah, playPreviousAyah, setReciter, stopAudio,
     setTranslationId: handleSetTranslationId,
+    setTafsir,
     setRepeatMode: handleSetRepeatMode,
     setRepeatCount, setRepeatRange, setRangeRepeatCount,
     setLanguage, setLastRead: handleSetLastRead,
@@ -694,19 +785,19 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }), [
     playAyah, playUrl, togglePlay, toggleAutoplay,
     playNextAyah, playPreviousAyah, setReciter, stopAudio,
-    handleSetTranslationId, handleSetRepeatMode,
+    handleSetTranslationId, setTafsir, handleSetRepeatMode,
     setLanguage, handleSetLastRead,
   ]);
 
   const stateValue = useMemo(() => ({
     currentAyah, isPlaying, isAutoplay, reciterId,
-    translationId, activeId, translationText,
+    translationId, tafsirId, activeId, translationText,
     repeatMode, repeatCount, repeatRange, rangeRepeatCount,
     currentRepeatIndex, rangeCycleIndex,
     language, lastRead, isTafseerVisible,
   }), [
     currentAyah, isPlaying, isAutoplay, reciterId,
-    translationId, activeId, translationText,
+    translationId, tafsirId, activeId, translationText,
     repeatMode, repeatCount, repeatRange, rangeRepeatCount,
     currentRepeatIndex, rangeCycleIndex,
     language, lastRead, isTafseerVisible,

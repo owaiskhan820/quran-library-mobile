@@ -16,6 +16,38 @@ function NativeChromeSetup() {
     if (Capacitor.getPlatform() === "android") {
       document.documentElement.style.setProperty("--safe-area-inset-top", "32px");
     }
+
+    // Intercept Android hardware back button to navigate history or exit
+    let backButtonSub: any = null;
+    const initBackButton = async () => {
+      const { App } = await import("@capacitor/app");
+      backButtonSub = await App.addListener("backButton", (data) => {
+        const overlays = (window as any).__activeOverlays || [];
+        if (overlays.length > 0) {
+          const closeFn = overlays.pop();
+          if (closeFn) {
+            closeFn();
+            return;
+          }
+        }
+
+        if (data.canGoBack) {
+          window.history.back();
+        } else {
+          App.exitApp();
+        }
+      });
+    };
+
+    if (Capacitor.getPlatform() === "android") {
+      initBackButton();
+    }
+
+    return () => {
+      if (backButtonSub) {
+        backButtonSub.remove();
+      }
+    };
   }, []);
 
   return null;

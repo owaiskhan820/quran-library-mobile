@@ -396,7 +396,7 @@ export default function MushafSpreadViewer({ initialPage }: MushafSpreadViewerPr
     bufferSpreadRef.current = bufferSpread;
   }, [bufferSpread]);
   const { setLastRead, stopAudio, setIsTafseerVisible } = useAudioActions();
-  const { language, lastRead, isTafseerVisible, currentAyah } = useAudioState();
+  const { language, lastRead, isTafseerVisible, currentAyah, tafsirId } = useAudioState();
 
   const [tafseerData, setTafseerData] = useState<{ 
     surah: number; 
@@ -837,6 +837,7 @@ export default function MushafSpreadViewer({ initialPage }: MushafSpreadViewerPr
         surahName={tafseerData?.surahName || ""}
         ayahNumber={tafseerData?.ayah || 0}
         language={language}
+        tafsirId={tafsirId}
       />
     </main>
   );

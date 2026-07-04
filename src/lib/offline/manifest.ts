@@ -135,6 +135,27 @@ export function isTafsirFullyDownloaded(tafsirId: number, totalSurahs = 114): bo
   return true;
 }
 
+/**
+ * Which surahs are still missing for a (sharded) tafsir download — used to
+ * distinguish "never downloaded" from "partially downloaded, N missing" in
+ * the UI, and to drive a targeted retry (only re-fetches what's missing).
+ * Empty array means either fully downloaded or never started.
+ */
+export function getMissingTafsirSurahs(tafsirId: number, totalSurahs = 114): number[] {
+  if (offlineTafsirKeys.has(String(tafsirId))) return []; // whole-book variant, complete
+  const missing: number[] = [];
+  for (let surah = 1; surah <= totalSurahs; surah++) {
+    if (!offlineTafsirKeys.has(`${tafsirId}:${surah}`)) missing.push(surah);
+  }
+  return missing;
+}
+
+/** True if at least one surah is downloaded but not all — a partial/interrupted download. */
+export function isTafsirPartiallyDownloaded(tafsirId: number, totalSurahs = 114): boolean {
+  const missing = getMissingTafsirSurahs(tafsirId, totalSurahs);
+  return missing.length > 0 && missing.length < totalSurahs;
+}
+
 // ---- Mutations (async, go through the download manager) ----
 
 export async function markAyahAudioDownloaded(

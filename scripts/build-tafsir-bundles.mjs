@@ -43,9 +43,20 @@ const TRANSLATION_RESOURCES_WITH_FOOTNOTES = [
   { id: 97, slug: "ur-al-maududi", name: "Tafheem-e-Qur'an (Urdu)" },
 ];
 
-// Plain translations, no footnote splicing needed.
+// Plain translations, no footnote splicing needed — the remainder of the
+// app's full TRANSLATIONS catalog (src/context/AudioContext.tsx), so every
+// translation the app already offers becomes downloadable, not just Maududi.
 const TRANSLATION_RESOURCES_PLAIN = [
   { id: 84, slug: "en-taqi-usmani", name: "Taqi Usmani (English)" },
+  { id: 20, slug: "en-sahih", name: "Sahih International" },
+  { id: 85, slug: "en-abdul-haleem", name: "Abdul Haleem" },
+  { id: 22, slug: "en-yusuf-ali", name: "Yusuf Ali" },
+  { id: 158, slug: "bayan-ul-quran", name: "Bayan-ul-Quran (Urdu)" },
+  { id: 234, slug: "ur-fatah-muhammad-jalandhari", name: "Fatah Muhammad Jalandhari (Urdu)" },
+  { id: 54, slug: "ur-junagarri", name: "Maulana Muhammad Junagarhi (Urdu)" },
+  { id: 151, slug: "tafsir-e-usmani", name: "Tafsir-e-Usmani (Urdu)" },
+  { id: 819, slug: "maulana-wahid-uddin-khan-urdu", name: "Maulana Wahiduddin Khan (Urdu)" },
+  { id: 831, slug: "maududi-roman-urdu", name: "Maududi (Roman Urdu)" },
 ];
 
 const args = process.argv.slice(2);

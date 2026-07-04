@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Download, Trash2, Loader2, Check } from "lucide-react";
+import { Download, Trash2, Loader2, Check, RefreshCw } from "lucide-react";
 import { Capacitor } from "@capacitor/core";
 import { TAFSIRS } from "@/lib/tafsirs";
 import { TRANSLATIONS } from "@/context/AudioContext";
@@ -13,33 +13,53 @@ import {
   confirmIfCellular,
   subscribeActiveDownloads,
 } from "@/lib/offline/downloadManager";
-import { isTafsirFullyDownloaded, isTranslationDownloaded } from "@/lib/offline/manifest";
+import { isTafsirFullyDownloaded, isTranslationDownloaded, getMissingTafsirSurahs } from "@/lib/offline/manifest";
 
 // Only the resources we currently have pre-built bundles for — see
 // scripts/build-tafsir-bundles.mjs. Extend both lists together when more
 // resources are bundled.
 const DOWNLOADABLE_TAFSIR_IDS = [14, 169, 160];
-const DOWNLOADABLE_TRANSLATION_IDS = [95, 97, 84];
+// Every translation the app offers (src/context/AudioContext.tsx TRANSLATIONS) is downloadable.
+const DOWNLOADABLE_TRANSLATION_IDS = [20, 84, 85, 22, 95, 158, 97, 234, 54, 151, 819, 831];
 const ALL_SURAH_IDS = Array.from({ length: 114 }, (_, i) => i + 1);
 
-type Status = "idle" | "downloading" | "done";
+// TAFSIRS' raw names are ambiguous between these three Ibn Kathir editions
+// (e.g. plain "Tafsir Ibn Kathir" for the Arabic one vs "Ibn Kathir
+// (Abridged)" for English) — spell out the language explicitly here so
+// users can tell which one actually matches what the reader defaults to.
+const TAFSIR_DISPLAY_NAMES: Record<number, string> = {
+  14: "Ibn Kathir — Arabic (full)",
+  169: "Ibn Kathir — English (abridged)",
+  160: "Ibn Kathir — Urdu",
+};
+
+type Status = "idle" | "downloading" | "done" | "partial";
 
 function ResourceRow({
   name,
   status,
   progress,
+  missingCount,
   onDownload,
   onDelete,
 }: {
   name: string;
   status: Status;
   progress: { done: number; total: number } | null;
+  missingCount?: number;
   onDownload: () => void;
   onDelete: () => void;
 }) {
   return (
     <div className="flex items-center justify-between p-3 rounded-2xl hover:bg-gray-50">
-      <span className="text-sm font-semibold text-gray-700">{name}</span>
+      <div className="flex flex-col">
+        <span className="text-sm font-semibold text-gray-700">{name}</span>
+        {status === "partial" && (
+          <span className="text-[11px] text-amber-600 font-medium">
+            Partially downloaded — {missingCount} surah{missingCount === 1 ? "" : "s"} missing
+          </span>
+        )}
+      </div>
       {status === "done" ? (
         <button onClick={onDelete} className="p-1.5 text-red-400 hover:text-red-600" aria-label={`Delete ${name}`}>
           <Trash2 size={16} />
@@ -49,6 +69,15 @@ function ResourceRow({
           <Loader2 size={14} className="animate-spin" />
           {progress ? `${progress.done}/${progress.total}` : ""}
         </span>
+      ) : status === "partial" ? (
+        <div className="flex items-center gap-2">
+          <button onClick={onDownload} className="p-1.5 text-amber-600 hover:text-amber-700" aria-label={`Retry missing parts of ${name}`} title="Retry downloading the missing parts">
+            <RefreshCw size={16} />
+          </button>
+          <button onClick={onDelete} className="p-1.5 text-red-400 hover:text-red-600" aria-label={`Delete ${name}`}>
+            <Trash2 size={16} />
+          </button>
+        </div>
       ) : (
         <button onClick={onDownload} className="p-1.5 text-muted hover:text-primary" aria-label={`Download ${name}`}>
           <Download size={16} />
@@ -74,6 +103,17 @@ export default function TafsirTranslationDownloads() {
   const statusFor = (key: string, isDownloaded: boolean): Status => {
     if (downloading[key]) return "downloading";
     return isDownloaded ? "done" : "idle";
+  };
+
+  const tafsirStatusFor = (tafsirId: number): { status: Status; missingCount: number } => {
+    const key = `tafsir:${tafsirId}`;
+    if (downloading[key]) return { status: "downloading", missingCount: 0 };
+    if (isTafsirFullyDownloaded(tafsirId)) return { status: "done", missingCount: 0 };
+    const missing = getMissingTafsirSurahs(tafsirId);
+    if (missing.length > 0 && missing.length < 114) {
+      return { status: "partial", missingCount: missing.length };
+    }
+    return { status: "idle", missingCount: 0 };
   };
 
   const handleDownloadTafsir = async (tafsirId: number) => {
@@ -125,11 +165,13 @@ export default function TafsirTranslationDownloads() {
         <p className="px-3 pt-2 pb-1 text-[10px] font-bold text-muted uppercase tracking-widest">Tafsir</p>
         {tafsirs.map((t) => {
           const key = `tafsir:${t.id}`;
+          const { status, missingCount } = tafsirStatusFor(t.id);
           return (
             <ResourceRow
               key={t.id}
-              name={t.name}
-              status={statusFor(key, isTafsirFullyDownloaded(t.id))}
+              name={TAFSIR_DISPLAY_NAMES[t.id] ?? t.name}
+              status={status}
+              missingCount={missingCount}
               progress={downloading[key] ?? null}
               onDownload={() => handleDownloadTafsir(t.id)}
               onDelete={() => deleteTafsir(t.id, ALL_SURAH_IDS).then(() => setRefreshKey((k) => k + 1))}
